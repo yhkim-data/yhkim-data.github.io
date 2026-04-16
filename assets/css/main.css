@@ -1,0 +1,478 @@
+/* ================================================
+   데이터 인사이트랩 (Data Insight Lab) 스타일시트
+   컬러 시스템: Primary 블루, Accent 그린, 화이트 배경
+   ================================================ */
+
+/* === CSS 변수 === */
+:root {
+  --color-primary: #1E60C9;
+  --color-primary-dark: #174EA3;
+  --color-primary-light: #EBF1FB;
+  --color-accent: #10B981;
+  --color-accent-dark: #0D9668;
+  --color-text: #1F2937;
+  --color-text-light: #6B7280;
+  --color-bg: #FFFFFF;
+  --color-bg-gray: #F9FAFB;
+  --color-border: #E5E7EB;
+  --font-sans: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  --max-width: 1080px;
+  --header-height: 64px;
+}
+
+/* === 리셋 및 기본 === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* === 헤더 === */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  height: var(--header-height);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.logo:hover {
+  color: var(--color-text);
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.site-nav a {
+  color: var(--color-text);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.site-nav a:hover {
+  color: var(--color-primary);
+}
+
+.nav-cta {
+  background: var(--color-primary);
+  color: var(--color-bg) !important;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.nav-cta:hover {
+  background: var(--color-primary-dark);
+  color: var(--color-bg) !important;
+}
+
+/* === 히어로 섹션 === */
+.hero {
+  padding: 100px 0 80px;
+  text-align: center;
+}
+
+.hero-tagline {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+}
+
+.hero h1 {
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-text);
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+.hero-sub {
+  font-size: 1.15rem;
+  color: var(--color-text-light);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.hero-cta {
+  display: inline-block;
+  background: var(--color-primary);
+  color: var(--color-bg) !important;
+  padding: 14px 36px;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.hero-cta:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+
+/* === 핵심 차별점 섹션 === */
+.strengths {
+  padding: 80px 0;
+  background: var(--color-bg-gray);
+}
+
+.section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 48px;
+  color: var(--color-text);
+}
+
+.strengths-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.strength-card {
+  background: var(--color-bg);
+  border-radius: 12px;
+  padding: 36px 28px;
+  border: 1px solid var(--color-border);
+  transition: box-shadow 0.2s;
+}
+
+.strength-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.strength-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--color-primary-light);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: var(--color-primary);
+  font-size: 1.5rem;
+}
+
+.strength-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--color-text);
+}
+
+.strength-card p {
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+  line-height: 1.7;
+}
+
+/* === 대표 소개 + 문의 섹션 === */
+.about-contact {
+  padding: 80px 0;
+}
+
+.about-contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.about h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.about p {
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+
+.about .tech-stack {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.tech-tag {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.contact-box {
+  background: var(--color-bg-gray);
+  border-radius: 12px;
+  padding: 36px;
+  border: 1px solid var(--color-border);
+}
+
+.contact-box h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  font-size: 0.95rem;
+}
+
+.contact-item + .contact-item {
+  border-top: 1px solid var(--color-border);
+}
+
+.contact-label {
+  color: var(--color-text-light);
+  min-width: 60px;
+}
+
+.contact-value a {
+  font-weight: 500;
+}
+
+/* === 서비스 페이지 === */
+.page-header {
+  padding: 60px 0 40px;
+  text-align: center;
+  background: var(--color-bg-gray);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.page-header h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.page-header p {
+  font-size: 1.05rem;
+  color: var(--color-text-light);
+}
+
+.services-list {
+  padding: 60px 0;
+}
+
+.service-item {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.service-item:last-child {
+  border-bottom: none;
+}
+
+.service-number {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+
+.service-item h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--color-text);
+}
+
+.service-detail {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.service-detail-block h3 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.service-detail-block p {
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+  line-height: 1.7;
+}
+
+/* === 서비스 CTA === */
+.services-cta {
+  padding: 60px 0;
+  text-align: center;
+  background: var(--color-bg-gray);
+}
+
+.services-cta h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.services-cta p {
+  color: var(--color-text-light);
+  margin-bottom: 28px;
+}
+
+/* === 푸터 === */
+.site-footer {
+  padding: 32px 0;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-bg-gray);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.footer-brand span {
+  color: var(--color-text-light);
+}
+
+.footer-contact {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+}
+
+.footer-divider {
+  color: var(--color-border);
+}
+
+.footer-copyright {
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+  text-align: center;
+}
+
+/* === 반응형: 태블릿 === */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .strengths-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .about-contact-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .service-detail {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
+
+/* === 반응형: 모바일 === */
+@media (max-width: 480px) {
+  .hero {
+    padding: 60px 0 50px;
+  }
+
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+  }
+
+  .site-nav {
+    gap: 16px;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+  }
+}

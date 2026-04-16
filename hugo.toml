@@ -1,0 +1,15 @@
+# 데이터 인사이트랩 (Data Insight Lab) 홈페이지 설정
+baseURL = 'https://di-lab.io/'
+languageCode = 'ko-KR'
+title = '데이터 인사이트랩 | Data Insight Lab'
+# theme 미사용 (커스텀 layouts 직접 구성)
+
+[params]
+  description = '데이터 분석 · AI/ML 모델링 · 컨설팅 전문 기업'
+  email = 'yhkim@di-lab.io'
+  phone = '010-8630-5881'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
