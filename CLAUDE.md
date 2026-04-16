@@ -3,7 +3,7 @@
 ## 개요
 - DI Lab = Data Insight Laboratory (Intelligence 아님!)
 - GitHub Pages 배포: yhkim-data.github.io
-- 커스텀 도메인: di-lab.io, www.di-lab.io
+- 커스텀 도메인: di-lab.io
 - 대표: YH.Kim
 - 이메일: yhkim@di-lab.io
 
@@ -18,6 +18,8 @@
 
 ## 파일 구조
 yhkim-data.github.io/
+├── .github/workflows/ ← GitHub Actions (Hugo 빌드·배포)
+├── .gitignore
 ├── CLAUDE.md
 ├── CNAME              ← 절대 수정/삭제 금지!
 ├── hugo.toml          ← Hugo 설정
@@ -25,8 +27,7 @@ yhkim-data.github.io/
 ├── assets/css/        ← CSS
 ├── content/           ← 콘텐츠 (Markdown)
 ├── static/images/     ← 정적 파일 (로고 등)
-├── archetypes/        ← Hugo 아키타입
-└── .claude/           ← 하네스 설정
+└── archetypes/        ← Hugo 아키타입
 
 ## 빌드/배포
 - 빌드: hugo --gc --minify
@@ -35,8 +36,8 @@ yhkim-data.github.io/
 - CNAME 파일 절대 수정/삭제 금지
 
 ## 디자인 규칙
-- 메인 컬러: #1a365d (남색)
-- 포인트 컬러: #2b6cb0 (파랑)
+- 메인 컬러: #1E60C9 (파랑), 다크: #174EA3, 라이트: #EBF1FB
+- 포인트 컬러: #10B981 (초록), 다크: #0D9668
 - 배경: 흰색(#fff) / 연회색(#f7fafc) 번갈아
 - 폰트: Noto Sans KR
 - 본문: 16px, 제목: 32px, 소제목: 24px
