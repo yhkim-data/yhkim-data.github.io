@@ -223,6 +223,75 @@ a:hover {
   line-height: 1.7;
 }
 
+/* === 프로젝트 실적 섹션 === */
+.projects {
+  padding: 80px 0;
+  background: var(--color-bg);
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--color-text-light);
+  margin-top: -36px;
+  margin-bottom: 48px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 28px 24px;
+  color: var(--color-text);
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.project-card:hover {
+  color: var(--color-text);
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.project-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.project-field {
+  font-size: 0.85rem;
+  color: var(--color-primary);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.project-stack {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.project-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-light);
+  margin-top: auto;
+  transition: color 0.2s;
+}
+
+.project-card:hover .project-link {
+  color: var(--color-primary);
+}
+
 /* === 대표 소개 + 문의 섹션 === */
 .about-contact {
   padding: 80px 0;
@@ -435,6 +504,11 @@ a:hover {
   .strengths-grid {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .about-contact-inner {
