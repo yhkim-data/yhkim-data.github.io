@@ -2,3 +2,4 @@ public/
 .hugo_build.lock
 resources/
 qr_output/
+CLAUDE.md
