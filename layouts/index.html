@@ -1,7 +1,15 @@
 {{ define "main" }}
 
-<!-- 히어로 섹션: 핵심 메시지 + CTA -->
+<!-- 히어로 섹션: 핵심 메시지 + CTA
+     배경 영상 슬롯: static/video/hero.webm 를 추가하면 자동으로 활성화됨 (poster: static/images/hero-poster.webp) -->
 <section class="hero">
+  {{ if fileExists "static/video/hero.webm" }}
+  <video class="hero-video" autoplay muted loop playsinline aria-hidden="true" tabindex="-1"
+    {{- if fileExists "static/images/hero-poster.webp" }} poster="/images/hero-poster.webp"{{ end }}>
+    <source src="/video/hero.webm" type="video/webm">
+  </video>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  {{ end }}
   <div class="container">
     <p class="hero-tagline">통계 분석 · AI 모델링 · 데이터 구축</p>
     <h1>데이터에서 의사결정까지,<br>인사이트를 설계합니다</h1>

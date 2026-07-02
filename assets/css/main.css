@@ -10,6 +10,8 @@
   --color-primary-light: #EBF1FB;
   --color-accent: #10B981;
   --color-accent-dark: #0D9668;
+  --color-ink: #0C1B33;        /* 다크톤 포인트: hero·마무리 CTA 배경 */
+  --color-ink-text: #B7C4D8;   /* ink 배경 위 보조 텍스트 */
   --color-text: #1F2937;
   --color-text-light: #6B7280;
   --color-bg: #FFFFFF;
@@ -119,16 +121,47 @@ a:hover {
   color: var(--color-bg) !important;
 }
 
-/* === 히어로 섹션 === */
+/* === 히어로 섹션 (다크 + 배경 영상 슬롯) === */
 .hero {
-  padding: 100px 0 80px;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 0 100px;
   text-align: center;
+  background: radial-gradient(ellipse at 50% -20%, #1B3A6B 0%, var(--color-ink) 62%);
+  color: #fff;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(12, 27, 51, 0.72);
+  z-index: 1;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-video {
+    display: none;
+  }
 }
 
 .hero-tagline {
   font-size: 0.95rem;
   font-weight: 500;
-  color: var(--color-primary);
+  color: #8FB4F0;
   margin-bottom: 16px;
   letter-spacing: 0.05em;
 }
@@ -137,14 +170,14 @@ a:hover {
   font-size: 2.75rem;
   font-weight: 700;
   line-height: 1.3;
-  color: var(--color-text);
+  color: #fff;
   margin-bottom: 20px;
   letter-spacing: -0.02em;
 }
 
 .hero-sub {
   font-size: 1.15rem;
-  color: var(--color-text-light);
+  color: var(--color-ink-text);
   margin-bottom: 40px;
   line-height: 1.6;
 }
@@ -466,11 +499,12 @@ a:hover {
   color: var(--color-primary);
 }
 
-/* === 서비스 CTA === */
+/* === 서비스 CTA (다크 마무리) === */
 .services-cta {
-  padding: 60px 0;
+  padding: 72px 0;
   text-align: center;
-  background: var(--color-bg-gray);
+  background: var(--color-ink);
+  color: #fff;
 }
 
 .services-cta h2 {
@@ -480,7 +514,7 @@ a:hover {
 }
 
 .services-cta p {
-  color: var(--color-text-light);
+  color: var(--color-ink-text);
   margin-bottom: 28px;
 }
 
