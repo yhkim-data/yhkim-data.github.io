@@ -545,6 +545,25 @@ a:hover {
   color: var(--color-primary);
 }
 
+/* === 404 페이지 === */
+.not-found {
+  padding: var(--section-pad) 0;
+  text-align: center;
+}
+
+.not-found-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.not-found-secondary {
+  font-weight: 500;
+  padding: 10px 4px;
+}
+
 /* === 서비스 CTA (다크 마무리) === */
 .services-cta {
   padding: 72px 0;

@@ -1,0 +1,21 @@
+{{ define "main" }}
+
+<!-- 404 페이지 -->
+<section class="page-header">
+  <div class="container">
+    <h1>페이지를 찾을 수 없습니다</h1>
+    <p>주소가 바뀌었거나 삭제된 페이지입니다. 아래에서 원하시는 내용을 찾아보세요.</p>
+  </div>
+</section>
+
+<section class="not-found">
+  <div class="container">
+    <div class="not-found-links">
+      <a href="/" class="hero-cta">홈으로 가기</a>
+      <a href="/services/" class="not-found-secondary">서비스 보기</a>
+      <a href="mailto:{{ .Site.Params.email }}" class="not-found-secondary">문의하기</a>
+    </div>
+  </div>
+</section>
+
+{{ end }}
