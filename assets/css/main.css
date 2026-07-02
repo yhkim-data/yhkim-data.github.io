@@ -435,6 +435,37 @@ a:hover {
   line-height: 1.7;
 }
 
+.service-for {
+  list-style: none;
+}
+
+.service-for li {
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+  line-height: 1.7;
+  padding-left: 16px;
+  position: relative;
+}
+
+.service-for li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.service-cta {
+  display: inline-block;
+  margin-top: 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
 /* === 서비스 CTA === */
 .services-cta {
   padding: 60px 0;
