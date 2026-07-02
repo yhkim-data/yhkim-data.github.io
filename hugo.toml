@@ -4,6 +4,9 @@ languageCode = 'ko-KR'
 title = '데이터 인사이트랩 | Data Insight Lab'
 # theme 미사용 (커스텀 layouts 직접 구성)
 
+# 태그·카테고리 미사용 (taxonomy 템플릿 경고 방지)
+disableKinds = ['taxonomy', 'term']
+
 [params]
   description = '데이터 분석 · AI/ML 모델링 · 컨설팅 전문 기업'
   email = 'yhkim@di-lab.io'
