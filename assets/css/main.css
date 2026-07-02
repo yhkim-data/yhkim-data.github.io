@@ -20,6 +20,7 @@
   --font-sans: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
   --max-width: 1080px;
   --header-height: 64px;
+  --section-pad: 80px;
 }
 
 /* === 리셋 및 기본 === */
@@ -50,6 +51,32 @@ a {
 
 a:hover {
   color: var(--color-primary-dark);
+}
+
+/* 키보드 포커스 표시 (접근성) */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* 본문 바로가기 링크: 포커스 전에는 숨김 */
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -48px;
+  z-index: 200;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 0 0 6px 6px;
+  font-weight: 500;
+  transition: top 0.15s;
+}
+
+.skip-link:focus {
+  top: 0;
+  color: #fff;
 }
 
 .container {
@@ -200,12 +227,12 @@ a:hover {
 
 /* === 핵심 차별점 섹션 === */
 .strengths {
-  padding: 80px 0;
+  padding: var(--section-pad) 0;
   background: var(--color-bg-gray);
 }
 
 .section-title {
-  font-size: 1.75rem;
+  font-size: 2rem;
   font-weight: 700;
   text-align: center;
   margin-bottom: 48px;
@@ -258,16 +285,8 @@ a:hover {
 
 /* === 프로젝트 실적 섹션 === */
 .projects {
-  padding: 80px 0;
+  padding: var(--section-pad) 0;
   background: var(--color-bg);
-}
-
-.section-subtitle {
-  text-align: center;
-  font-size: 1rem;
-  color: var(--color-text-light);
-  margin-top: -36px;
-  margin-bottom: 48px;
 }
 
 .projects-grid {
@@ -327,7 +346,7 @@ a:hover {
 
 /* === 대표 소개 + 문의 섹션 === */
 .about-contact {
-  padding: 80px 0;
+  padding: var(--section-pad) 0;
 }
 
 .about-contact-inner {
@@ -379,6 +398,12 @@ a:hover {
   margin-bottom: 20px;
 }
 
+.contact-note {
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+  margin-bottom: 20px;
+}
+
 .contact-item {
   display: flex;
   align-items: center;
@@ -409,7 +434,7 @@ a:hover {
 }
 
 .page-header h1 {
-  font-size: 2.25rem;
+  font-size: 2rem;
   font-weight: 700;
   margin-bottom: 12px;
 }
