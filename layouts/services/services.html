@@ -27,15 +27,17 @@
           <h3>진행 방식</h3>
           <p>{{ .how }}</p>
         </div>
-        <div class="service-detail-block">
-          <h3>결과물</h3>
-          <p>{{ .output }}</p>
-        </div>
+      </div>
+      <div class="service-meta">
+        <p><span class="service-meta-label">표준 기간</span>{{ .duration }}</p>
+        <p><span class="service-meta-label">산출물</span>{{ .deliverables }}</p>
       </div>
       {{ $subject := querify "subject" (printf "[서비스 문의] %s" .title) | replaceRE `\+` "%20" }}
       <a class="service-cta" href="{{ printf "mailto:%s?%s" $.Site.Params.email $subject | safeURL }}">이 서비스 문의하기 →</a>
     </div>
     {{ end }}
+
+    <p class="services-note">기간은 통상 범위이며, 과업 범위 확정 후 협의를 통해 조정됩니다.</p>
 
   </div>
 </section>

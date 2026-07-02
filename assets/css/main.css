@@ -495,7 +495,7 @@ a:hover {
 
 .service-detail {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 32px;
 }
 
@@ -535,6 +535,35 @@ a:hover {
   height: 6px;
   border-radius: 50%;
   background: var(--color-accent);
+}
+
+/* 서비스 메타: 기간·산출물 — 푸터 톤의 절제된 표기 */
+.service-meta {
+  margin-top: 24px;
+  padding: 14px 18px;
+  background: var(--color-bg-gray);
+  border-radius: 8px;
+}
+
+.service-meta p {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  line-height: 1.7;
+}
+
+.service-meta-label {
+  display: inline-block;
+  min-width: 64px;
+  margin-right: 8px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.services-note {
+  margin-top: 32px;
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  text-align: center;
 }
 
 .service-cta {
