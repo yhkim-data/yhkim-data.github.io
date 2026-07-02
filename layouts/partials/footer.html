@@ -12,6 +12,15 @@
         <a href="tel:010-8630-5881">010-8630-5881</a>
       </div>
     </div>
+    {{ with .Site.Params.business }}
+    <p class="footer-business">
+      <span>{{ .name }}</span>
+      <span>대표: {{ .owner }}</span>
+      <span>사업자등록번호: {{ .regNo }}</span>
+      <span>{{ .address }}</span>
+      <span><a href="mailto:{{ $.Site.Params.email }}">{{ $.Site.Params.email }}</a></span>
+    </p>
+    {{ end }}
     <p class="footer-copyright">&copy; {{ now.Year }} 데이터 인사이트랩. All rights reserved.</p>
   </div>
 </footer>

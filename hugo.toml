@@ -12,6 +12,13 @@ disableKinds = ['taxonomy', 'term']
   email = 'yhkim@di-lab.io'
   phone = '010-8630-5881'
 
+# 푸터 사업자 정보 (소재지는 동 단위 표기 유지 — 상세 주소 추가 금지)
+[params.business]
+  name = '데이터 인사이트랩'
+  owner = '김영혜'
+  regNo = '746-12-02956'
+  address = '서울특별시 송파구 석촌동'
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]

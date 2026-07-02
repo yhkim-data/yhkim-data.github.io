@@ -600,6 +600,25 @@ a:hover {
   color: var(--color-border);
 }
 
+/* 사업자 정보: 모바일에서 항목 단위로 줄바꿈 */
+.footer-business {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 8px;
+  row-gap: 2px;
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.footer-business span + span::before {
+  content: "|";
+  color: var(--color-border);
+  margin-right: 8px;
+}
+
 .footer-copyright {
   font-size: 0.8rem;
   color: var(--color-text-light);
