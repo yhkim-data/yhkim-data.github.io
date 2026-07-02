@@ -3,3 +3,6 @@ public/
 resources/
 qr_output/
 CLAUDE.md
+# v0.5 단계6: public GitHub 노출 방지 (.claude 폴더 통째 — 본인 도구 + sync 결과물 보호)
+.claude/
+.claude-tools.txt
