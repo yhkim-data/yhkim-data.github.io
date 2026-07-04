@@ -22,7 +22,7 @@ enableRobotsTXT = true
   name = '데이터 인사이트랩'
   owner = '김영혜'
   regNo = '746-12-02956'
-  address = '서울특별시 송파구 석촌동'
+  address = '서울특별시 송파구'
 
 [markup]
   [markup.goldmark]

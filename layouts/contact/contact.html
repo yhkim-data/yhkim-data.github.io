@@ -17,7 +17,7 @@
     <!-- no-JS POST 폴백: redirect → /contact/?sent=1#sent 로 돌아오면 :target 으로 표시 -->
     <div id="sent" class="form-banner" tabindex="-1">
       <h2>문의가 접수되었습니다.</h2>
-      <p>확인 후 영업일 1일 이내에 회신드리겠습니다. 감사합니다.</p>
+      <p>확인 후 영업일 3일 이내에 회신드리겠습니다. 감사합니다.</p>
     </div>
 
     <div class="contact-grid">
@@ -39,7 +39,7 @@
               </div>
               <div class="form-field">
                 <label for="f-org">소속(기관·회사명)</label>
-                <input id="f-org" type="text" name="소속" autocomplete="organization">
+                <input id="f-org" type="text" name="company" autocomplete="organization">
               </div>
             </div>
             <div class="form-row2">
@@ -49,12 +49,12 @@
               </div>
               <div class="form-field">
                 <label for="f-phone">연락처(선택)</label>
-                <input id="f-phone" type="tel" name="연락처" autocomplete="tel">
+                <input id="f-phone" type="tel" name="phone" autocomplete="tel">
               </div>
             </div>
             <div class="form-field">
               <label for="f-service">문의 서비스</label>
-              <select id="f-service" name="문의 서비스">
+              <select id="f-service" name="service">
                 {{ with .Site.GetPage "/services" }}{{ range .Params.services }}
                 <option value="{{ .title }}" data-num="{{ .number }}">{{ .title }}</option>
                 {{ end }}{{ end }}
@@ -66,7 +66,7 @@
               <textarea id="f-msg" name="message" rows="6" required></textarea>
             </div>
             <div class="form-consent">
-              <input id="f-consent" type="checkbox" name="개인정보 동의" value="동의함" required>
+              <input id="f-consent" type="checkbox" name="privacy_consent" value="agreed" required>
               <label for="f-consent">개인정보 수집·이용에 동의합니다. (수집 항목: 이름·소속·이메일·연락처, 목적: 문의 응대 및 견적 안내, 보유 기간: 처리 완료 후 1년) <a href="/privacy/">[개인정보처리방침]</a></label>
             </div>
             <p class="form-error" role="alert" hidden>전송에 실패했습니다. 잠시 후 다시 시도하시거나, 아래 이메일로 직접 보내주세요.</p>
@@ -75,7 +75,7 @@
 
           <div class="form-success form-banner" hidden>
             <h2>문의가 접수되었습니다.</h2>
-            <p>확인 후 영업일 1일 이내에 회신드리겠습니다. 감사합니다.</p>
+            <p>확인 후 영업일 3일 이내에 회신드리겠습니다. 감사합니다.</p>
           </div>
         </form>
 
@@ -99,7 +99,7 @@
         {{ end }}
         <div class="blk">
           <div class="k">회신</div>
-          <div class="v">영업일 1일 이내</div>
+          <div class="v">영업일 3일 이내</div>
         </div>
       </aside>
 
