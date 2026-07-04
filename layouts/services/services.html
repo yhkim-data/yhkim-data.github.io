@@ -29,8 +29,7 @@
         <div class="svc-field"><span class="k">표준 기간</span><span class="v">{{ $s.duration }}</span></div>
         <div class="svc-field"><span class="k">산출물</span><span class="v">{{ $s.deliverables }}</span></div>
         <div class="svc-cta">
-          {{ $subject := querify "subject" (printf "[서비스 문의] %s" $s.title) | replaceRE `\+` "%20" }}
-          <a class="link-accent" style="font-size:14px;" href="{{ printf "mailto:%s?%s" $.Site.Params.email $subject | safeURL }}">이 서비스 문의하기 <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="link-accent" style="font-size:14px;" href="/contact/?service={{ $s.number }}">이 서비스 문의하기 <span class="arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </details>

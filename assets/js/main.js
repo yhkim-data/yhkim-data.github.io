@@ -56,3 +56,61 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
   els.forEach(function (el) { obs.observe(el); });
 })();
+
+// 문의 폼: ?service= 자동 선택 + 제목 갱신 + fetch 제출 (실패 시 일반 POST 폴백 유지)
+(function () {
+  'use strict';
+
+  var form = document.querySelector('.contact-form');
+  if (!form) return;
+
+  var select = form.querySelector('#f-service');
+  var subject = form.querySelector('input[name="subject"]');
+
+  function syncSubject() {
+    if (select && subject) subject.value = '[사이트 문의] ' + select.value;
+  }
+
+  // /contact/?service=01 → 해당 서비스 자동 선택 (실패해도 무해)
+  try {
+    var num = new URLSearchParams(location.search).get('service');
+    if (num && select) {
+      var opt = select.querySelector('option[data-num="' + num + '"]');
+      if (opt) select.value = opt.value;
+    }
+  } catch (e) { /* 미지원 브라우저는 기본값 유지 */ }
+  syncSubject();
+  if (select) select.addEventListener('change', syncSubject);
+
+  if (!window.fetch || !window.FormData) return;
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    if (!form.reportValidity()) return;
+    var body = form.querySelector('.form-body');
+    var success = form.querySelector('.form-success');
+    var error = form.querySelector('.form-error');
+    var btn = form.querySelector('button[type="submit"]');
+    error.hidden = true;
+    btn.disabled = true;
+    var data = new FormData(form);
+    data.delete('redirect'); // fetch 경로에서는 인라인 메시지 사용
+    fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        if (res.success) {
+          body.hidden = true;
+          success.hidden = false;
+          success.setAttribute('tabindex', '-1');
+          success.focus();
+        } else {
+          error.hidden = false;
+          btn.disabled = false;
+        }
+      })
+      .catch(function () {
+        error.hidden = false;
+        btn.disabled = false;
+      });
+  });
+})();

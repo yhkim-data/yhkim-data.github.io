@@ -11,25 +11,75 @@
   </div>
 </header>
 
-<!-- 문의 방법: 서비스별 메일 문의 + 연락처 정보 -->
 <section class="section flush" style="padding-top:clamp(40px,5vw,64px);">
   <div style="max-width:var(--max-width);margin-inline:auto;">
+
+    <!-- no-JS POST 폴백: redirect → /contact/?sent=1#sent 로 돌아오면 :target 으로 표시 -->
+    <div id="sent" class="form-banner" tabindex="-1">
+      <h2>문의가 접수되었습니다.</h2>
+      <p>확인 후 영업일 1일 이내에 회신드리겠습니다. 감사합니다.</p>
+    </div>
+
     <div class="contact-grid">
 
       <div class="contact-main reveal">
-        <div style="margin-bottom:clamp(28px,3.4vw,40px);">
-          <a href="mailto:{{ .Site.Params.email }}" class="btn-accent">이메일로 문의하기 <span class="arrow" aria-hidden="true">→</span></a>
-        </div>
-        <p style="font-size:12.5px;font-weight:700;letter-spacing:0.04em;color:var(--ink);margin-bottom:10px;">문의 유형별 바로가기</p>
-        <div class="contact-topics">
-          {{ with .Site.GetPage "/services" }}{{ range .Params.services }}
-          {{ $subject := querify "subject" (printf "[서비스 문의] %s" .title) | replaceRE `\+` "%20" }}
-          <a href="{{ printf "mailto:%s?%s" $.Site.Params.email $subject | safeURL }}">
-            <span class="t">{{ .title }}</span>
-            <span class="go">메일 문의 →</span>
-          </a>
-          {{ end }}{{ end }}
-        </div>
+        <form class="contact-form" method="POST" action="https://api.web3forms.com/submit" novalidate="novalidate">
+          <input type="hidden" name="access_key" value="{{ .Site.Params.web3formsKey }}">
+          <input type="hidden" name="subject" value="[사이트 문의]">
+          <input type="hidden" name="from_name" value="DI Lab 홈페이지">
+          <input type="hidden" name="redirect" value="{{ "contact/?sent=1#sent" | absURL }}">
+          <!-- 허니팟: 봇이 채우면 무시됨 -->
+          <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="form-body">
+            <div class="form-row2">
+              <div class="form-field">
+                <label for="f-name">이름 <span class="req" aria-hidden="true">*</span></label>
+                <input id="f-name" type="text" name="name" required autocomplete="name">
+              </div>
+              <div class="form-field">
+                <label for="f-org">소속(기관·회사명)</label>
+                <input id="f-org" type="text" name="소속" autocomplete="organization">
+              </div>
+            </div>
+            <div class="form-row2">
+              <div class="form-field">
+                <label for="f-email">이메일 <span class="req" aria-hidden="true">*</span></label>
+                <input id="f-email" type="email" name="email" required autocomplete="email">
+              </div>
+              <div class="form-field">
+                <label for="f-phone">연락처(선택)</label>
+                <input id="f-phone" type="tel" name="연락처" autocomplete="tel">
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="f-service">문의 서비스</label>
+              <select id="f-service" name="문의 서비스">
+                {{ with .Site.GetPage "/services" }}{{ range .Params.services }}
+                <option value="{{ .title }}" data-num="{{ .number }}">{{ .title }}</option>
+                {{ end }}{{ end }}
+                <option value="기타">기타</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="f-msg">문의 내용 <span class="req" aria-hidden="true">*</span></label>
+              <textarea id="f-msg" name="message" rows="6" required></textarea>
+            </div>
+            <div class="form-consent">
+              <input id="f-consent" type="checkbox" name="개인정보 동의" value="동의함" required>
+              <label for="f-consent">개인정보 수집·이용에 동의합니다. (수집 항목: 이름·소속·이메일·연락처, 목적: 문의 응대 및 견적 안내, 보유 기간: 처리 완료 후 1년) <a href="/privacy/">[개인정보처리방침]</a></label>
+            </div>
+            <p class="form-error" role="alert" hidden>전송에 실패했습니다. 잠시 후 다시 시도하시거나, 아래 이메일로 직접 보내주세요.</p>
+            <button type="submit" class="btn-accent">문의 보내기 <span class="arrow" aria-hidden="true">→</span></button>
+          </div>
+
+          <div class="form-success form-banner" hidden>
+            <h2>문의가 접수되었습니다.</h2>
+            <p>확인 후 영업일 1일 이내에 회신드리겠습니다. 감사합니다.</p>
+          </div>
+        </form>
+
+        <p class="mail-direct">이메일로 직접 보내기: <a class="mono" href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a></p>
       </div>
 
       <aside class="contact-aside reveal">

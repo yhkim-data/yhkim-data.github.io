@@ -1,0 +1,21 @@
+{{ define "main" }}
+
+<!-- 개인정보처리방침 -->
+<header class="page-head">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="page-head-inner">
+      <p class="kicker">정책</p>
+      <h1>{{ .Title }}</h1>
+    </div>
+  </div>
+</header>
+
+<section class="section flush" style="padding-top:clamp(24px,3vw,40px);">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="prose">
+      {{ .Content }}
+    </div>
+  </div>
+</section>
+
+{{ end }}
