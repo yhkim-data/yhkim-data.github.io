@@ -1,26 +1,32 @@
-<!-- 사이트 푸터 -->
+<!-- 사이트 푸터 (다크 잉크) -->
 <footer class="site-footer">
-  <div class="container">
-    <div class="footer-content">
+  <div class="footer-inner">
+    <div class="footer-top">
       <div class="footer-brand">
-        <strong>데이터 인사이트랩</strong>
-        <span>Data Insight Lab</span>
+        <div class="name">Data Insight Lab</div>
+        <p>데이터에서 의사결정까지, 인사이트를 설계합니다.</p>
       </div>
-      <div class="footer-contact">
-        <a href="mailto:yhkim@di-lab.io">yhkim@di-lab.io</a>
-        <span class="footer-divider">|</span>
-        <a href="tel:010-8630-5881">010-8630-5881</a>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <span class="label">SITEMAP</span>
+          <a href="/">홈</a>
+          <a href="/about/">회사 소개</a>
+          <a href="/services/">서비스</a>
+          <a href="/projects/">프로젝트</a>
+          <a href="/contact/">문의</a>
+        </div>
+        <div class="footer-col">
+          <span class="label">CONTACT</span>
+          <a class="mono" href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a>
+          {{ with .Site.Params.business }}<span>{{ .address }}</span>{{ end }}
+        </div>
       </div>
     </div>
     {{ with .Site.Params.business }}
-    <p class="footer-business">
-      <span>{{ .name }}</span>
-      <span>대표: {{ .owner }}</span>
-      <span>사업자등록번호: {{ .regNo }}</span>
-      <span>{{ .address }}</span>
-      <span><a href="mailto:{{ $.Site.Params.email }}">{{ $.Site.Params.email }}</a></span>
-    </p>
+    <div class="footer-biz">
+      <div>{{ .name }} &nbsp;|&nbsp; 대표: {{ .owner }} &nbsp;|&nbsp; 사업자등록번호: {{ .regNo }}</div>
+      <div>{{ .address }} &nbsp;|&nbsp; {{ $.Site.Params.email }} &nbsp;|&nbsp; &copy; {{ now.Year }} {{ .name }}</div>
+    </div>
     {{ end }}
-    <p class="footer-copyright">&copy; {{ now.Year }} 데이터 인사이트랩. All rights reserved.</p>
   </div>
 </footer>

@@ -1,0 +1,32 @@
+{{ define "main" }}
+
+<!-- 프로젝트 헤더 -->
+<header class="page-head">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="page-head-inner reveal">
+      <p class="kicker">프로젝트</p>
+      <h1>{{ .Params.heading }}</h1>
+      <p class="lede">{{ .Params.lede }}</p>
+    </div>
+  </div>
+</header>
+
+<!-- 프로젝트 인덱스 -->
+<section class="section flush" style="padding-top:clamp(16px,2vw,32px);">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    {{ range $i, $p := .Params.projects }}
+    <a href="{{ $p.url }}" class="work-row reveal" target="_blank" rel="noopener">
+      <span class="no" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>
+      <div class="body">
+        <div class="t">{{ $p.title }}</div>
+        <div class="stack">{{ $p.stack }}</div>
+      </div>
+      <span class="go">GitHub에서 보기 →<span class="sr-only"> (새 창)</span></span>
+    </a>
+    {{ end }}
+  </div>
+</section>
+
+{{ partial "closing-cta.html" . }}
+
+{{ end }}

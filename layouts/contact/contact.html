@@ -1,0 +1,60 @@
+{{ define "main" }}
+
+<!-- 문의 헤더 -->
+<header class="page-head">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="page-head-inner reveal">
+      <p class="kicker">문의</p>
+      <h1>{{ .Params.heading | safeHTML }}</h1>
+      <p class="lede">{{ .Params.lede }}</p>
+    </div>
+  </div>
+</header>
+
+<!-- 문의 방법: 서비스별 메일 문의 + 연락처 정보 -->
+<section class="section flush" style="padding-top:clamp(40px,5vw,64px);">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="contact-grid">
+
+      <div class="contact-main reveal">
+        <div style="margin-bottom:clamp(28px,3.4vw,40px);">
+          <a href="mailto:{{ .Site.Params.email }}" class="btn-accent">이메일로 문의하기 <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+        <p style="font-size:12.5px;font-weight:700;letter-spacing:0.04em;color:var(--ink);margin-bottom:10px;">문의 유형별 바로가기</p>
+        <div class="contact-topics">
+          {{ with .Site.GetPage "/services" }}{{ range .Params.services }}
+          {{ $subject := querify "subject" (printf "[서비스 문의] %s" .title) | replaceRE `\+` "%20" }}
+          <a href="{{ printf "mailto:%s?%s" $.Site.Params.email $subject | safeURL }}">
+            <span class="t">{{ .title }}</span>
+            <span class="go">메일 문의 →</span>
+          </a>
+          {{ end }}{{ end }}
+        </div>
+      </div>
+
+      <aside class="contact-aside reveal">
+        <div class="blk">
+          <div class="k">이메일</div>
+          <div class="v"><a class="mono" href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a></div>
+        </div>
+        {{ with .Site.Params.business }}
+        <div class="blk">
+          <div class="k">소재지</div>
+          <div class="v">{{ .address }}</div>
+        </div>
+        <div class="blk">
+          <div class="k">대표 · 사업자등록번호</div>
+          <div class="v">{{ .owner }}<br><span class="mono" style="font-weight:500;">{{ .regNo }}</span></div>
+        </div>
+        {{ end }}
+        <div class="blk">
+          <div class="k">회신</div>
+          <div class="v">영업일 1일 이내</div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+{{ end }}

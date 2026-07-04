@@ -1,54 +1,44 @@
 {{ define "main" }}
 
 <!-- 서비스 페이지 헤더 -->
-<section class="page-header">
-  <div class="container">
-    <h1>{{ .Params.heading }}</h1>
-    <p>{{ .Params.subheading }}</p>
-  </div>
-</section>
-
-<!-- 서비스 목록: 카피는 content/services/index.md front matter에서 관리 -->
-<section class="services-list">
-  <div class="container">
-
-    {{ range .Params.services }}
-    <div class="service-item" id="service-{{ .number }}">
-      <p class="service-number">{{ .number }}</p>
-      <h2>{{ .title }}</h2>
-      <div class="service-detail">
-        <div class="service-detail-block">
-          <h3>이런 분께</h3>
-          <ul class="service-for">
-            {{ range .for }}<li>{{ . }}</li>{{ end }}
-          </ul>
-        </div>
-        <div class="service-detail-block">
-          <h3>진행 방식</h3>
-          <p>{{ .how }}</p>
-        </div>
-      </div>
-      <div class="service-meta">
-        <p><span class="service-meta-label">표준 기간</span>{{ .duration }}</p>
-        <p><span class="service-meta-label">산출물</span>{{ .deliverables }}</p>
-      </div>
-      {{ $subject := querify "subject" (printf "[서비스 문의] %s" .title) | replaceRE `\+` "%20" }}
-      <a class="service-cta" href="{{ printf "mailto:%s?%s" $.Site.Params.email $subject | safeURL }}">이 서비스 문의하기 →</a>
+<header class="page-head">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="page-head-inner reveal">
+      <p class="kicker">서비스</p>
+      <h1>여섯 개 영역으로<br>수행합니다</h1>
+      <p class="lede">진단부터 납품까지, 필요한 단계만 선택할 수 있습니다. 각 서비스는 명확한 진행 방식과 산출물로 구성됩니다.</p>
     </div>
+  </div>
+</header>
+
+<!-- 서비스 아코디언: 카피는 content/services/index.md front matter에서 관리 -->
+<section class="svc-list">
+  <div class="svc-list-inner">
+    {{ range $i, $s := .Params.services }}
+    <details class="svc-row" id="service-{{ $s.number }}"{{ if eq $i 0 }} open{{ end }}>
+      <summary>
+        <span class="head-left">
+          <span class="no" aria-hidden="true">{{ $s.number }}</span>
+          <span class="t">{{ $s.title }}</span>
+        </span>
+        <span class="sign" aria-hidden="true"></span>
+      </summary>
+      <div class="svc-body">
+        <div class="svc-field"><span class="k">이런 분께</span><span class="v">{{ delimit $s.for " · " }}</span></div>
+        <div class="svc-field"><span class="k">진행 방식</span><span class="v">{{ $s.how }}</span></div>
+        <div class="svc-field"><span class="k">표준 기간</span><span class="v">{{ $s.duration }}</span></div>
+        <div class="svc-field"><span class="k">산출물</span><span class="v">{{ $s.deliverables }}</span></div>
+        <div class="svc-cta">
+          {{ $subject := querify "subject" (printf "[서비스 문의] %s" $s.title) | replaceRE `\+` "%20" }}
+          <a class="link-accent" style="font-size:14px;" href="{{ printf "mailto:%s?%s" $.Site.Params.email $subject | safeURL }}">이 서비스 문의하기 <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </details>
     {{ end }}
-
-    <p class="services-note">기간은 통상 범위이며, 과업 범위 확정 후 협의를 통해 조정됩니다.</p>
-
   </div>
+  <p class="svc-note">기간은 통상 범위이며, 과업 범위 확정 후 협의를 통해 조정됩니다.</p>
 </section>
 
-<!-- 서비스 문의 CTA -->
-<section class="services-cta">
-  <div class="container">
-    <h2>{{ .Params.cta.title }}</h2>
-    <p>{{ .Params.cta.text }}</p>
-    <a href="mailto:{{ .Site.Params.email }}" class="hero-cta">{{ .Params.cta.label }}</a>
-  </div>
-</section>
+{{ partial "closing-cta.html" . }}
 
 {{ end }}

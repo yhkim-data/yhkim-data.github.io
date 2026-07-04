@@ -1,0 +1,92 @@
+{{ define "main" }}
+
+<!-- 회사 소개 헤더 -->
+<header class="page-head">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="page-head-inner reveal">
+      <p class="kicker">회사 소개</p>
+      <h1>{{ .Params.heading | safeHTML }}</h1>
+      <p class="lede">{{ .Params.lede }}</p>
+    </div>
+  </div>
+</header>
+
+<!-- 01 전문 분야 -->
+<section class="section flush" style="padding-top:clamp(56px,7vw,96px);">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="section-head reveal" style="margin-bottom:clamp(8px,2vw,20px);">
+      <h2 style="font-size:clamp(26px,3.4vw,40px);">전문 분야</h2>
+      <span class="section-no" aria-hidden="true" style="font-size:clamp(26px,3vw,44px);">01</span>
+    </div>
+    {{ range .Params.expertise }}
+    <div class="expertise-row reveal">
+      <h3>{{ .title }}</h3>
+      <p>{{ .text }}</p>
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+<!-- 02 걸어온 길 -->
+<section class="section flush">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="section-head reveal" style="margin-bottom:clamp(20px,3vw,40px);">
+      <div style="max-width:640px;">
+        <h2 style="font-size:clamp(26px,3.4vw,40px);">걸어온 길</h2>
+        <p class="lede">인증 취득과 공공조달 참여, 분석 영역 확장으로 역량을 쌓아왔습니다.</p>
+      </div>
+      <span class="section-no" aria-hidden="true" style="font-size:clamp(26px,3vw,44px);">02</span>
+    </div>
+    <div class="reveal">
+      {{ range $i, $h := .Params.history }}
+      <div class="history-row">
+        <div class="marker"><span class="dot" aria-hidden="true"></span><span class="no" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span></div>
+        <div class="body">
+          <h3>{{ $h.title }}</h3>
+          <p>{{ $h.text }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- 인증 및 등록 (다크) -->
+<section class="creds">
+  <div class="creds-inner reveal">
+    <div class="creds-intro">
+      <h2>인증 및 등록</h2>
+      <p>공공조달에 필요한 인증을 갖추고 나라장터 등록을 완료하여, 수의계약과 경쟁입찰에 모두 참여합니다.</p>
+    </div>
+    <div class="creds-list">
+      {{ range $i, $c := .Params.credentials }}
+      <div class="row"><span class="t">{{ $c }}</span><span class="no" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span></div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- 실적 + 사업자 정보 -->
+<section class="section" style="padding:clamp(80px,10vw,128px) var(--pad-x);">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="track-top reveal">
+      <div class="counter">
+        <div class="num">{{ .Params.track.count }}<span class="plus">+</span></div>
+        <div class="cap">{{ .Params.track.caption }}</div>
+      </div>
+      <p>{{ .Params.track.text }}</p>
+    </div>
+    {{ with .Site.Params.business }}
+    <div class="biz-grid reveal">
+      <div><div class="k">대표</div><div class="v">{{ .owner }}</div></div>
+      <div><div class="k">사업자등록번호</div><div class="v mono">{{ .regNo }}</div></div>
+      <div><div class="k">소재지</div><div class="v">{{ .address }}</div></div>
+      <div><div class="k">이메일</div><div class="v"><a class="mono" href="mailto:{{ $.Site.Params.email }}">{{ $.Site.Params.email }}</a></div></div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+{{ partial "closing-cta.html" . }}
+
+{{ end }}

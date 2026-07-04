@@ -1,14 +1,19 @@
-<!-- 사이트 헤더: 로고 + 네비게이션 -->
-<header class="site-header">
-  <div class="container">
-    <a href="/" class="logo" aria-label="데이터 인사이트랩 홈">
-      <!-- 로고 심볼 이미지 (logo_simbol.pdf 변환) -->
-      <img class="logo-symbol" src="/images/logo_simbol.png" alt="DILab 로고" width="34" height="36">
-      <span class="logo-text">DILab</span>
-    </a>
-    <nav class="site-nav">
-      <a href="/services/">서비스</a>
-      <a href="mailto:yhkim@di-lab.io" class="nav-cta">문의하기</a>
-    </nav>
-  </div>
+<!-- 사이트 헤더: 홈에서는 hero 위 투명, 스크롤·서브페이지에서 솔리드 (JS 없으면 항상 솔리드) -->
+<header class="site-header is-solid">
+  <a href="/" class="logo" aria-label="데이터 인사이트랩 홈">Data Insight Lab</a>
+  <nav class="site-nav" aria-label="주 메뉴">
+    <a href="/about/"{{ if eq .RelPermalink "/about/" }} aria-current="page"{{ end }}>회사 소개</a>
+    <a href="/services/"{{ if eq .RelPermalink "/services/" }} aria-current="page"{{ end }}>서비스</a>
+    <a href="/projects/"{{ if eq .RelPermalink "/projects/" }} aria-current="page"{{ end }}>프로젝트</a>
+    <a href="/contact/" class="nav-cta">문의하기</a>
+  </nav>
+  <button class="hamburger" aria-label="메뉴" aria-expanded="false"><i></i><i></i><i></i></button>
 </header>
+
+<nav class="mobile-menu" aria-label="모바일 메뉴">
+  <a href="/">홈</a>
+  <a href="/about/">회사 소개</a>
+  <a href="/services/">서비스</a>
+  <a href="/projects/">프로젝트</a>
+  <a href="/contact/" class="menu-contact">문의하기 →</a>
+</nav>

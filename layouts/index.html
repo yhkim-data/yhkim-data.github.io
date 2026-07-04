@@ -1,168 +1,127 @@
 {{ define "main" }}
 
-<!-- 히어로 섹션: 핵심 메시지 + CTA
-     배경 영상 슬롯: static/video/hero.webm 를 추가하면 자동으로 활성화됨 (poster: static/images/hero-poster.webp) -->
+<!-- 히어로: 다크 네이비 + 배경 영상 슬롯 (static/video/hero.webm 있으면 자동 활성화) -->
 <section class="hero">
   {{ if fileExists "static/video/hero.webm" }}
   <video class="hero-video" autoplay muted loop playsinline aria-hidden="true" tabindex="-1"
     {{- if fileExists "static/images/hero-poster.webp" }} poster="/images/hero-poster.webp"{{ end }}>
     <source src="/video/hero.webm" type="video/webm">
   </video>
-  <div class="hero-overlay" aria-hidden="true"></div>
   {{ end }}
-  <div class="container">
-    <p class="hero-tagline">통계 분석 · AI 모델링 · 데이터 구축</p>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="hero-shade-bottom" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <p class="hero-kicker"><span>통계 분석 · AI 모델링 · 데이터 구축</span></p>
     <h1>데이터에서 의사결정까지,<br>인사이트를 설계합니다</h1>
-    <p class="hero-sub">
-      공공기관과 기업의 데이터 분석·AI 모델링·통계 조사를<br>
-      전문으로 수행하는 데이터 인사이트랩입니다.
-    </p>
-    <a href="mailto:yhkim@di-lab.io" class="hero-cta">견적 문의</a>
-  </div>
-</section>
-
-<!-- 핵심 차별점 3개 -->
-<section class="strengths">
-  <div class="container">
-    <h2 class="section-title">데이터 인사이트랩을 선택하는 이유</h2>
-    <div class="strengths-grid">
-
-      <div class="strength-card">
-        <div class="strength-icon">
-          <svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        </div>
-        <h3>수집부터 보고서까지, 한 팀이 끝냅니다</h3>
-        <p>R, Python, SAS 기반 통계 분석과 딥러닝 모델링을 수행합니다. 중간 핸드오프 없이 분석 전 과정을 책임집니다.</p>
-      </div>
-
-      <div class="strength-card">
-        <div class="strength-icon">
-          <svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h3>공공조달 인증, 갖추고 있습니다</h3>
-        <p>여성기업·중소기업·SW사업자 인증 보유. 나라장터 등록을 완료하여 수의계약과 경쟁입찰 모두 참여합니다.</p>
-      </div>
-
-      <div class="strength-card">
-        <div class="strength-icon">
-          <svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        </div>
-        <h3>40건 이상의 분석, 검증된 방법론</h3>
-        <p>보건의료 빅데이터, 구조방정식, 딥러닝 모델링 등 다양한 프로젝트를 수행했습니다. 학술적 엄밀함과 실무 감각을 함께 갖추고 있습니다.</p>
-      </div>
-
+    <p class="hero-sub">공공기관과 기업의 데이터 분석·AI 모델링·통계 조사를 전문으로 수행하는 데이터 인사이트랩입니다.</p>
+    <div class="hero-actions">
+      <a href="/contact/" class="btn-accent">견적 문의 <span class="arrow" aria-hidden="true">→</span></a>
+      <a href="/services/" class="btn-ghost">서비스 보기</a>
     </div>
   </div>
 </section>
 
-<!-- 프로젝트 실적 -->
-<section class="projects">
-  <div class="container">
-    <h2 class="section-title">프로젝트</h2>
-    <div class="projects-grid">
-
-      <a href="https://github.com/yhkim-data/youth-learning-assistant" class="project-card" target="_blank" rel="noopener">
-        <h3>AI 학습도우미 플랫폼</h3>
-        <span class="project-field">풀스택 AI EdTech</span>
-        <div class="project-stack">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">FastAPI</span>
-          <span class="tech-tag">Next.js</span>
-          <span class="tech-tag">Supabase</span>
-        </div>
-        <span class="project-link">GitHub에서 보기 →<span class="sr-only"> (새 창)</span></span>
-      </a>
-
-      <a href="https://github.com/yhkim-data/mex-3d-printing-optimization" class="project-card" target="_blank" rel="noopener">
-        <h3>3D 프린팅 공정 최적화 AI</h3>
-        <span class="project-field">ML/공정최적화</span>
-        <div class="project-stack">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">CatBoost</span>
-          <span class="tech-tag">Optuna</span>
-          <span class="tech-tag">SHAP</span>
-        </div>
-        <span class="project-link">GitHub에서 보기 →<span class="sr-only"> (새 창)</span></span>
-      </a>
-
-      <a href="https://github.com/yhkim-data/seoul-covid19-gwr-analysis" class="project-card" target="_blank" rel="noopener">
-        <h3>서울시 코로나19 확산 분석</h3>
-        <span class="project-field">공간통계</span>
-        <div class="project-stack">
-          <span class="tech-tag">R</span>
-          <span class="tech-tag">GWR/MGWR</span>
-        </div>
-        <span class="project-link">GitHub에서 보기 →<span class="sr-only"> (새 창)</span></span>
-      </a>
-
-      <a href="https://github.com/yhkim-data/respiratory-disease-regional-analysis" class="project-card" target="_blank" rel="noopener">
-        <h3>호흡기 질환 발생 요인 분석</h3>
-        <span class="project-field">보건통계/공간분석</span>
-        <div class="project-stack">
-          <span class="tech-tag">R</span>
-          <span class="tech-tag">HIRA 데이터</span>
-        </div>
-        <span class="project-link">GitHub에서 보기 →<span class="sr-only"> (새 창)</span></span>
-      </a>
-
-      <a href="https://github.com/yhkim-data/topic-modeling-analysis" class="project-card" target="_blank" rel="noopener">
-        <h3>연구 동향 토픽모델링</h3>
-        <span class="project-field">NLP/텍스트분석</span>
-        <div class="project-stack">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">LDA</span>
-          <span class="tech-tag">NetworkX</span>
-        </div>
-        <span class="project-link">GitHub에서 보기 →<span class="sr-only"> (새 창)</span></span>
-      </a>
-
+<!-- 01 Why -->
+<section class="section">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="section-head reveal">
+      <h2>Why<br>Data Insight Lab</h2>
+      <span class="section-no" aria-hidden="true">01</span>
+    </div>
+    <div class="why-row reveal">
+      <div class="why-title"><span class="no" aria-hidden="true">01</span><h3>수집부터 보고서까지,<br>한 팀이 끝냅니다</h3></div>
+      <p>R, Python, SAS 기반 통계 분석과 딥러닝 모델링을 수행합니다. 중간 핸드오프 없이 분석 전 과정을 책임집니다.</p>
+    </div>
+    <div class="why-row reveal">
+      <div class="why-title"><span class="no" aria-hidden="true">02</span><h3>공공조달 인증,<br>갖추고 있습니다</h3></div>
+      <p>여성기업·중소기업·SW사업자 인증 보유. 나라장터 등록을 완료하여 수의계약과 경쟁입찰에 모두 참여합니다.</p>
+    </div>
+    <div class="why-row reveal">
+      <div class="why-title"><span class="no" aria-hidden="true">03</span><h3>40건 이상의 분석,<br>검증된 방법론</h3></div>
+      <p>보건의료 빅데이터, 구조방정식, 딥러닝 모델링 등 다양한 프로젝트를 수행했습니다. 학술적 엄밀함과 실무 감각을 함께 갖추고 있습니다.</p>
     </div>
   </div>
 </section>
 
-<!-- 대표 소개 + 문의 -->
-<section class="about-contact">
-  <div class="container">
-    <div class="about-contact-inner">
-
-      <div class="about">
-        <h2>담당자가 곧 전문가입니다</h2>
-        <p>
-          <strong>김영혜</strong> · 데이터 인사이트랩 대표
-        </p>
-        <p>
-          석사 연구에서 딥러닝 예측 모델을 설계했고,
-          보건의료 빅데이터, 토픽모델링, AI 최적화 등
-          40건 이상의 통계·AI 프로젝트를 납품했습니다.
-        </p>
-        <div class="tech-stack">
-          <span class="tech-tag">R</span>
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">SAS</span>
-          <span class="tech-tag">토픽모델링</span>
-          <span class="tech-tag">구조방정식</span>
-          <span class="tech-tag">생존분석</span>
-        </div>
+<!-- 02 Process -->
+<section class="section flush">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="section-head reveal">
+      <div style="max-width:640px;">
+        <h2>Process</h2>
+        <p class="lede">진단에서 납품까지 네 단계로 진행합니다. 중간 핸드오프 없이 한 팀이 책임집니다.</p>
       </div>
-
-      <div class="contact-box">
-        <h2>전문가에게 직접 문의하세요</h2>
-        <p class="contact-note">
-          프로젝트 개요를 보내주시면, 적합한 분석 방법과 견적을 안내합니다.<br>
-          영업일 1일 이내에 회신합니다.
-        </p>
-        <div class="contact-item">
-          <span class="contact-label">이메일</span>
-          <span class="contact-value"><a href="mailto:yhkim@di-lab.io">yhkim@di-lab.io</a></span>
-        </div>
-        <div class="contact-item">
-          <span class="contact-label">전화</span>
-          <span class="contact-value"><a href="tel:010-8630-5881">010-8630-5881</a></span>
-        </div>
+      <span class="section-no" aria-hidden="true">02</span>
+    </div>
+    <div class="process-grid reveal">
+      <div class="process-card">
+        <div class="meta"><span class="no" aria-hidden="true">01</span><span class="tick" aria-hidden="true"></span></div>
+        <h3>Diagnose</h3>
+        <p>보유 데이터와 과제 목표를 함께 검토하고 분석 가능성을 진단합니다.</p>
       </div>
-
+      <div class="process-card">
+        <div class="meta"><span class="no" aria-hidden="true">02</span><span class="tick" aria-hidden="true"></span></div>
+        <h3>Design</h3>
+        <p>방법론과 추진 체계, 산출물 기준을 함께 설계합니다.</p>
+      </div>
+      <div class="process-card">
+        <div class="meta"><span class="no" aria-hidden="true">03</span><span class="tick" aria-hidden="true"></span></div>
+        <h3>Model</h3>
+        <p>통계 분석과 AI 모델링을 수행해 결과를 도출합니다.</p>
+      </div>
+      <div class="process-card">
+        <div class="meta"><span class="no" aria-hidden="true">04</span><span class="tick" aria-hidden="true"></span></div>
+        <h3>Deliver</h3>
+        <p>결과를 검증하고 보고서·데이터셋으로 전달합니다.</p>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- 03 Services teaser: 서비스 페이지 front matter 실데이터 -->
+<section class="section flush">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="section-head reveal" style="margin-bottom:clamp(18px,3vw,34px);">
+      <div style="max-width:640px;">
+        <h2>Services</h2>
+        <p class="lede">진단부터 납품까지, 여섯 개 영역으로 수행합니다.</p>
+      </div>
+      <span class="section-no" aria-hidden="true">03</span>
+    </div>
+    <div class="svc-teaser-grid reveal">
+      {{ with .Site.GetPage "/services" }}{{ range .Params.services }}
+      <a href="/services/#service-{{ .number }}" class="svc-teaser"><span class="no" aria-hidden="true">{{ .number }}</span><span class="t">{{ .title }}</span></a>
+      {{ end }}{{ end }}
+    </div>
+    <div class="after-grid-link reveal">
+      <a href="/services/" class="link-accent">서비스 자세히 보기 <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 04 Selected Work: 프로젝트 front matter의 featured 항목 -->
+<section class="section flush">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="section-head reveal" style="margin-bottom:clamp(10px,2vw,22px);">
+      <h2>Selected Work</h2>
+      <span class="section-no" aria-hidden="true">04</span>
+    </div>
+    {{ with .Site.GetPage "/projects" }}{{ range $i, $p := .Params.projects }}{{ if $p.featured }}
+    <a href="{{ $p.url }}" class="work-row reveal" target="_blank" rel="noopener">
+      <span class="no" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>
+      <div class="body">
+        <div class="t">{{ $p.title }}</div>
+        <div class="stack">{{ $p.stack }}</div>
+      </div>
+      <span class="go">GitHub에서 보기 →<span class="sr-only"> (새 창)</span></span>
+    </a>
+    {{ end }}{{ end }}{{ end }}
+    <div class="reveal" style="padding-top:clamp(20px,2.5vw,30px);">
+      <a href="/projects/" class="link-accent">프로젝트 전체 보기 <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+{{ partial "closing-cta.html" . }}
 
 {{ end }}

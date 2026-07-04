@@ -1,19 +1,22 @@
 {{ define "main" }}
 
 <!-- 404 페이지 -->
-<section class="page-header">
-  <div class="container">
-    <h1>페이지를 찾을 수 없습니다</h1>
-    <p>주소가 바뀌었거나 삭제된 페이지입니다. 아래에서 원하시는 내용을 찾아보세요.</p>
+<header class="page-head">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="page-head-inner">
+      <p class="kicker">404</p>
+      <h1>페이지를 찾을 수 없습니다</h1>
+      <p class="lede">주소가 바뀌었거나 삭제된 페이지입니다. 아래에서 원하시는 내용을 찾아보세요.</p>
+    </div>
   </div>
-</section>
+</header>
 
 <section class="not-found">
-  <div class="container">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
     <div class="not-found-links">
-      <a href="/" class="hero-cta">홈으로 가기</a>
-      <a href="/services/" class="not-found-secondary">서비스 보기</a>
-      <a href="mailto:{{ .Site.Params.email }}" class="not-found-secondary">문의하기</a>
+      <a href="/" class="btn-accent">홈으로 가기</a>
+      <a href="/services/" class="link-accent">서비스 보기 <span class="arrow" aria-hidden="true">→</span></a>
+      <a href="/contact/" class="link-accent">문의하기 <span class="arrow" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
