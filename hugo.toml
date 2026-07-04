@@ -15,7 +15,7 @@ enableRobotsTXT = true
   email = 'yhkim@di-lab.io'
   phone = '010-8630-5881'
   # Web3Forms 폼 전송 키 (공개되어도 무방 — 수신 주소 매핑용)
-  web3formsKey = 'REPLACE_WITH_ACCESS_KEY'
+  web3formsKey = 'c145dadc-2792-43b0-bd01-9bd182b2af30'
 
 # 푸터 사업자 정보 (소재지는 동 단위 표기 유지 — 상세 주소 추가 금지)
 [params.business]
