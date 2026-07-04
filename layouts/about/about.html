@@ -27,27 +27,22 @@
   </div>
 </section>
 
-<!-- 02 걸어온 길 -->
+<!-- 02 대표 소개 -->
 <section class="section flush">
   <div style="max-width:var(--max-width);margin-inline:auto;">
-    <div class="section-head reveal" style="margin-bottom:clamp(20px,3vw,40px);">
-      <div style="max-width:640px;">
-        <h2 style="font-size:clamp(26px,3.4vw,40px);">걸어온 길</h2>
-        <p class="lede">인증 취득과 공공조달 참여, 분석 영역 확장으로 역량을 쌓아왔습니다.</p>
-      </div>
+    {{ with .Params.ceo }}
+    <div class="section-head reveal" style="margin-bottom:clamp(8px,2vw,20px);">
+      <h2 style="font-size:clamp(26px,3.4vw,40px);">{{ .title }}</h2>
       <span class="section-no" aria-hidden="true" style="font-size:clamp(26px,3vw,44px);">02</span>
     </div>
-    <div class="reveal">
-      {{ range $i, $h := .Params.history }}
-      <div class="history-row">
-        <div class="marker"><span class="dot" aria-hidden="true"></span><span class="no" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span></div>
-        <div class="body">
-          <h3>{{ $h.title }}</h3>
-          <p>{{ $h.text }}</p>
-        </div>
+    <div class="expertise-row reveal" style="border-bottom:1px solid var(--line);">
+      <h3>{{ .name }}<br><span style="font-size:0.72em;font-weight:600;color:var(--muted);">{{ .role }}</span></h3>
+      <div style="flex:2 1 420px;min-width:280px;max-width:640px;">
+        <p style="font-size:clamp(15px,1.1vw,17px);line-height:1.8;color:var(--body);">{{ .text }}</p>
+        <p class="mono" style="margin-top:16px;font-size:13px;color:var(--muted);">{{ .stack }}</p>
       </div>
-      {{ end }}
     </div>
+    {{ end }}
   </div>
 </section>
 
