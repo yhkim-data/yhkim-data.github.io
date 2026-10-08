@@ -8,3 +8,4 @@ CLAUDE.md
 .claude-tools.txt
 # 익명화 대조표 (push 전 로컬 승인용, 원본 건명 포함 — 커밋 금지)
 PUBLISH_REVIEW.md
+.serena/

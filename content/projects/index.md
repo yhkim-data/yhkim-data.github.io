@@ -43,27 +43,22 @@ cases:
     stack: "학술 연구 · Python · LDA · 텍스트 분석"
     year: 2026
 
-# 공개 프로젝트: year 는 각 repo 최초 커밋 연도
+# 공개 프로젝트: GitHub 공개 repo
 projects:
   - title: "AI 학습도우미 플랫폼"
     stack: "풀스택 AI EdTech · Python · FastAPI · Next.js · Supabase"
     url: "https://github.com/yhkim-data/youth-learning-assistant"
-    year: 2026
     featured: true
   - title: "3D 프린팅 공정 최적화 AI"
     stack: "ML · 공정최적화 · Python · CatBoost · Optuna · SHAP"
     url: "https://github.com/yhkim-data/mex-3d-printing-optimization"
-    year: 2026
   - title: "서울시 코로나19 확산 분석"
     stack: "공간통계 · R · GWR/MGWR"
     url: "https://github.com/yhkim-data/seoul-covid19-gwr-analysis"
-    year: 2026
   - title: "호흡기 질환 발생 요인 분석"
     stack: "보건통계 · 공간분석 · R · HIRA 데이터"
     url: "https://github.com/yhkim-data/respiratory-disease-regional-analysis"
-    year: 2026
   - title: "연구 동향 토픽모델링"
     stack: "NLP · 텍스트분석 · Python · LDA · NetworkX"
     url: "https://github.com/yhkim-data/topic-modeling-analysis"
-    year: 2026
 ---
