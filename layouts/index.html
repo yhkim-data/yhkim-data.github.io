@@ -56,13 +56,21 @@
       </div>
       <span class="section-no" aria-hidden="true">02</span>
     </div>
-    <!-- 타임라인 컴포넌트: 구 about '걸어온 길'(커밋 1dfac1e) 마커·괘선 스타일 이식 -->
+    <!-- 타임라인 컴포넌트: 구 about '걸어온 길'(커밋 1dfac1e) 마커·괘선 스타일 이식.
+         R2: 각 단계 오른쪽에 "받는 것"(.gets) 열 추가 — 데스크톱 3열 그리드, 모바일 세로 적층 (add.css) -->
     <div class="process-timeline reveal">
       <div class="history-row">
         <div class="marker"><span class="dot" aria-hidden="true"></span><span class="no" aria-hidden="true">01</span></div>
         <div class="body">
           <h3 class="step">Diagnose</h3>
           <p>보유 데이터와 과제 목표를 검토하고 분석 가능성을 진단합니다.</p>
+        </div>
+        <div class="gets">
+          <span class="k">받는 것</span>
+          <ul>
+            <li>분석 가능성 진단 결과</li>
+            <li>적합한 서비스와 예상 일정 안내</li>
+          </ul>
         </div>
       </div>
       <div class="history-row">
@@ -71,12 +79,26 @@
           <h3 class="step">Design</h3>
           <p>방법론과 추진 체계, 산출물 기준을 설계합니다.</p>
         </div>
+        <div class="gets">
+          <span class="k">받는 것</span>
+          <ul>
+            <li>방법론·추진 체계 제안</li>
+            <li>산출물 기준과 과업 범위 확정</li>
+          </ul>
+        </div>
       </div>
       <div class="history-row">
         <div class="marker"><span class="dot" aria-hidden="true"></span><span class="no" aria-hidden="true">03</span></div>
         <div class="body">
           <h3 class="step">Model</h3>
           <p>통계 분석과 모델링을 수행해 결과를 도출합니다.</p>
+        </div>
+        <div class="gets">
+          <span class="k">받는 것</span>
+          <ul>
+            <li>분석·모델링 결과</li>
+            <li>재현 가능한 코드와 문서</li>
+          </ul>
         </div>
       </div>
       <div class="history-row">
@@ -85,8 +107,25 @@
           <h3 class="step">Deliver</h3>
           <p>결과를 검증하고 보고서와 데이터셋으로 전달합니다.</p>
         </div>
+        <div class="gets">
+          <span class="k">받는 것</span>
+          <ul>
+            <li>검증을 마친 최종 산출물</li>
+            <li>서비스별 산출물(보고서·데이터셋·코드 등)</li>
+          </ul>
+        </div>
       </div>
     </div>
+    {{/* 전체 기간 안내: services front matter 의 duration 문자열("2~6주", "규모별 협의 (통상 6주~)")에서 숫자만 뽑아 min·max 계산.
+         소프트웨어 개발은 상한이 없으므로 둘째 문장으로 별도 보충 (고정 문구) */}}
+    {{ $min := 0 }}{{ $max := 0 }}
+    {{ with .Site.GetPage "/services" }}{{ range .Params.services }}
+      {{ range findRE "[0-9]+" .duration }}{{ $n := int . }}
+        {{ if or (eq $min 0) (lt $n $min) }}{{ $min = $n }}{{ end }}
+        {{ if gt $n $max }}{{ $max = $n }}{{ end }}
+      {{ end }}
+    {{ end }}{{ end }}
+    <p class="process-note reveal">전체 기간은 서비스별 통상 <strong>{{ $min }}~{{ $max }}주</strong>이며, 과업 범위 확정 후 조정합니다. 소프트웨어 개발은 규모에 따라 별도 협의합니다.</p>
   </div>
 </section>
 

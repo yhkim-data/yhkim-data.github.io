@@ -1854,3 +1854,74 @@ body.js .reveal.is-in {
     min-width: 0;
   }
 }
+
+/* === 2026-10 고도화 2차: 홈 상단(Process·Services·Deliverables) 정보 보강 === */
+/* 추가 전용. 기존 .history-row / .svc-teaser / .sample-grid 규칙은 건드리지 않고
+   한정 선택자(.process-timeline …, .svc-teaser.is-card, .sample-grid.is-lead-layout)로만 덮는다 */
+
+/* --- R2 Process: 단계별 "받는 것" 3열 --- */
+/* 모바일(<880px)은 기존 flex-wrap 유지. .gets 가 한 줄 전부를 차지해 본문 아래에 적층 */
+.process-timeline .history-row .gets {
+  flex: 1 1 100%;
+  min-width: 0;
+  margin-top: 6px;
+}
+
+/* 라벨: .svc-field .k 와 같은 톤(산세리프 12px 굵게, accent-text). 의미 텍스트라 --faint 금지 */
+.process-timeline .gets .k {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--accent-text);
+  margin-bottom: 8px;
+}
+
+.process-timeline .gets ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* 항목: 본문 14.5px(.history-row p 와 동일 크기), 색은 --body 로 한 단계 진하게 — 설명문(muted)과 위계 구분 */
+.process-timeline .gets li {
+  font-size: 14.5px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--body);
+}
+
+/* 데스크톱(≥880px): 번호 · 단계 설명 · 받는 것 3열 그리드.
+   열 폭은 기존 marker 폭(clamp 70~110px)·열 간격(clamp 24~56px)을 그대로 써서 Why·Work 행과 좌측 정렬 유지 */
+@media (min-width: 880px) {
+  .process-timeline .history-row {
+    display: grid;
+    grid-template-columns: clamp(70px, 8vw, 110px) minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: clamp(24px, 4vw, 56px);
+    align-items: baseline;
+  }
+
+  .process-timeline .history-row .body {
+    min-width: 0;
+  }
+
+  .process-timeline .history-row .gets {
+    margin-top: 0;
+  }
+}
+
+/* 섹션 하단 전체 기간 안내: 타임라인 하단선 아래 한 줄. 숫자는 <strong> 으로 잉크색 */
+.process-note {
+  margin-top: clamp(18px, 2.4vw, 28px);
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 640px;
+}
+
+.process-note strong {
+  font-weight: 700;
+  color: var(--ink);
+}
+
