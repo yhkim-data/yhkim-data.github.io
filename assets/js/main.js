@@ -8,7 +8,7 @@
   var hero = document.querySelector('.hero');
   var isHome = document.body.classList.contains('page-home');
   // 어두운 섹션(마무리 CTA·푸터) — 헤더가 그 위에 오면 다크 헤더
-  var darkZones = Array.prototype.slice.call(document.querySelectorAll('.closing-cta, .site-footer'));
+  var darkZones = Array.prototype.slice.call(document.querySelectorAll('.creds, .closing-cta, .site-footer'));
 
   // 헤더: 홈은 hero 지나면 솔리드, 서브페이지는 항상 솔리드
   // 헤더 하단 경계가 어두운 섹션 안에 있으면 is-dark (메뉴 열림 시 해제)
