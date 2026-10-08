@@ -249,6 +249,22 @@ body.menu-open .mobile-menu {
   color: var(--accent-text);
 }
 
+/* 어두운 섹션(마무리 CTA·푸터) 위 → 다크 솔리드 헤더 */
+.site-header.is-solid.is-dark {
+  background: rgba(12, 27, 51, 0.88);
+  border-bottom-color: rgba(255, 255, 255, 0.16);
+}
+
+.site-header.is-solid.is-dark a,
+.site-header.is-solid.is-dark .logo,
+.site-header.is-solid.is-dark .hamburger {
+  color: #fff;
+}
+
+.site-header.is-solid.is-dark .site-nav a[aria-current="page"] {
+  color: #FF9A7B !important; /* 다크 배경용 액센트(4.5:1 이상) */
+}
+
 @media (max-width: 780px) {
   .site-nav { display: none; }
   .hamburger { display: inline-flex; }
