@@ -4,7 +4,7 @@ description: "데이터 인사이트랩의 전문 서비스 — 데이터 분석
 layout: "services"
 
 heading: "데이터 분석부터 시스템 구축까지"
-subheading: "40건 이상의 공공·민간 프로젝트 경험으로, 귀 기관의 데이터를 의사결정 근거로 바꿉니다."
+subheading: "{count}건 이상의 공공·민간 프로젝트 경험으로, 귀 기관의 데이터를 의사결정 근거로 바꿉니다."
 
 services:
   - number: "01"
