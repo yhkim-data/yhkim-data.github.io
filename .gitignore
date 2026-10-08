@@ -14,3 +14,5 @@ FAQ_REVIEW.md
 refs/
 tools/samples/.cache/
 __pycache__/
+# 실적 집계 분류표 (클라이언트명 포함 — 커밋 금지)
+COUNT_REVIEW.md
