@@ -108,23 +108,36 @@
   </div>
 </section>
 
-<!-- 04 Selected Work: 프로젝트 front matter의 featured 항목 -->
+<!-- 04 Selected Work: 프로젝트 front matter의 featured 항목 (수행 사례 div 2 → 공개 프로젝트 a 1, 번호 연속) -->
 <section class="section flush">
   <div style="max-width:var(--max-width);margin-inline:auto;">
     <div class="section-head reveal" style="margin-bottom:clamp(10px,2vw,22px);">
       <h2>Selected Work</h2>
       <span class="section-no" aria-hidden="true">04</span>
     </div>
-    {{ with .Site.GetPage "/projects" }}{{ range $i, $p := .Params.projects }}{{ if $p.featured }}
+    {{ $n := 0 }}
+    {{ with .Site.GetPage "/projects" }}
+    {{ range $c := .Params.cases }}{{ if $c.featured }}{{ $n = add $n 1 }}
+    <div class="work-row reveal">
+      <span class="no" aria-hidden="true">{{ printf "%02d" $n }}</span>
+      <div class="body">
+        <div class="t">{{ $c.title }}</div>
+        <div class="stack">{{ $c.field }} · {{ $c.stack }} · {{ $c.year }}</div>
+      </div>
+    </div>
+    {{ end }}{{ end }}
+    {{/* 사례(div) 뒤에 프로젝트(a) 1개: a:last-of-type 가 하단선, 사례 div 는 뒤의 .reveal div 때문에 하단선 없음 → 선 1겹 */}}
+    {{ range $p := .Params.projects }}{{ if $p.featured }}{{ $n = add $n 1 }}
     <a href="{{ $p.url }}" class="work-row reveal" target="_blank" rel="noopener">
-      <span class="no" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>
+      <span class="no" aria-hidden="true">{{ printf "%02d" $n }}</span>
       <div class="body">
         <div class="t">{{ $p.title }}</div>
-        <div class="stack">{{ $p.stack }}</div>
+        <div class="stack">{{ $p.stack }}{{ with $p.year }} · {{ . }}{{ end }}</div>
       </div>
       <span class="go">GitHub에서 보기 →<span class="sr-only"> (새 창)</span></span>
     </a>
-    {{ end }}{{ end }}{{ end }}
+    {{ end }}{{ end }}
+    {{ end }}
     <div class="reveal" style="padding-top:clamp(20px,2.5vw,30px);">
       <a href="/projects/" class="link-accent">프로젝트 전체 보기 <span class="arrow" aria-hidden="true">→</span></a>
     </div>
