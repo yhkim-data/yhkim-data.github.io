@@ -11,9 +11,32 @@
   </div>
 </header>
 
-<!-- 프로젝트 인덱스 -->
+<!-- 01 수행 사례: 익명 처리, 링크 없음 (front matter cases) -->
 <section class="section flush" style="padding-top:clamp(16px,2vw,32px);">
   <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="section-head reveal" style="margin-bottom:clamp(8px,2vw,20px);">
+      <h2 style="font-size:clamp(26px,3.4vw,40px);">수행 사례</h2>
+      <span class="section-no" aria-hidden="true" style="font-size:clamp(26px,3vw,44px);">01</span>
+    </div>
+    {{ range $i, $c := .Params.cases }}
+    <div class="work-row reveal">
+      <span class="no" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>
+      <div class="body">
+        <div class="t">{{ $c.title }}</div>
+        <div class="stack">{{ $c.field }} · {{ $c.stack }} · {{ $c.year }}</div>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+<!-- 02 공개 프로젝트: GitHub 링크 (front matter projects) -->
+<section class="section flush">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="section-head reveal" style="margin-bottom:clamp(8px,2vw,20px);">
+      <h2 style="font-size:clamp(26px,3.4vw,40px);">공개 프로젝트</h2>
+      <span class="section-no" aria-hidden="true" style="font-size:clamp(26px,3vw,44px);">02</span>
+    </div>
     {{ range $i, $p := .Params.projects }}
     <a href="{{ $p.url }}" class="work-row reveal" target="_blank" rel="noopener">
       <span class="no" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>

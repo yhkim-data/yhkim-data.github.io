@@ -29,7 +29,7 @@
       <span class="section-no" aria-hidden="true">01</span>
     </div>
     <div class="why-row reveal">
-      <div class="why-title"><span class="no" aria-hidden="true">01</span><h3>수집부터 보고서까지,<br>한 팀이 끝냅니다</h3></div>
+      <div class="why-title"><span class="no" aria-hidden="true">01</span><h3>수집부터 보고서까지,<br>담당자가 바뀌지 않습니다</h3></div>
       <p>R, Python, SAS 기반 통계 분석과 딥러닝 모델링을 수행합니다. 재하청이나 중간 전달 없이 분석 전 과정을 직접 맡습니다.</p>
     </div>
     <div class="why-row reveal">
@@ -37,7 +37,7 @@
       <p>여성기업·중소기업·SW사업자 인증 보유. 나라장터 등록을 완료하여 수의계약과 경쟁입찰에 모두 참여합니다.</p>
     </div>
     <div class="why-row reveal">
-      <div class="why-title"><span class="no" aria-hidden="true">03</span><h3>40건 이상의 분석,<br>검증된 방법론</h3></div>
+      <div class="why-title"><span class="no" aria-hidden="true">03</span><h3>{{ .Site.Params.stats.projects_count }}건 이상의 분석,<br>검증된 방법론</h3></div>
       <p>보건의료 빅데이터, 구조방정식, 딥러닝 모델링 프로젝트를 수행했습니다. 학술적 엄밀함과 실무 감각을 함께 갖추고 있습니다.</p>
     </div>
   </div>
@@ -108,23 +108,36 @@
   </div>
 </section>
 
-<!-- 04 Selected Work: 프로젝트 front matter의 featured 항목 -->
+<!-- 04 Selected Work: 프로젝트 front matter의 featured 항목 (수행 사례 div 2 → 공개 프로젝트 a 1, 번호 연속) -->
 <section class="section flush">
   <div style="max-width:var(--max-width);margin-inline:auto;">
     <div class="section-head reveal" style="margin-bottom:clamp(10px,2vw,22px);">
       <h2>Selected Work</h2>
       <span class="section-no" aria-hidden="true">04</span>
     </div>
-    {{ with .Site.GetPage "/projects" }}{{ range $i, $p := .Params.projects }}{{ if $p.featured }}
+    {{ $n := 0 }}
+    {{ with .Site.GetPage "/projects" }}
+    {{ range $c := .Params.cases }}{{ if $c.featured }}{{ $n = add $n 1 }}
+    <div class="work-row reveal">
+      <span class="no" aria-hidden="true">{{ printf "%02d" $n }}</span>
+      <div class="body">
+        <div class="t">{{ $c.title }}</div>
+        <div class="stack">{{ $c.field }} · {{ $c.stack }} · {{ $c.year }}</div>
+      </div>
+    </div>
+    {{ end }}{{ end }}
+    {{/* 사례(div) 뒤에 프로젝트(a) 1개: a:last-of-type 가 하단선, 사례 div 는 뒤의 .reveal div 때문에 하단선 없음 → 선 1겹 */}}
+    {{ range $p := .Params.projects }}{{ if $p.featured }}{{ $n = add $n 1 }}
     <a href="{{ $p.url }}" class="work-row reveal" target="_blank" rel="noopener">
-      <span class="no" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>
+      <span class="no" aria-hidden="true">{{ printf "%02d" $n }}</span>
       <div class="body">
         <div class="t">{{ $p.title }}</div>
         <div class="stack">{{ $p.stack }}</div>
       </div>
       <span class="go">GitHub에서 보기 →<span class="sr-only"> (새 창)</span></span>
     </a>
-    {{ end }}{{ end }}{{ end }}
+    {{ end }}{{ end }}
+    {{ end }}
     <div class="reveal" style="padding-top:clamp(20px,2.5vw,30px);">
       <a href="/projects/" class="link-accent">프로젝트 전체 보기 <span class="arrow" aria-hidden="true">→</span></a>
     </div>
