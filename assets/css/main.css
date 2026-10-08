@@ -1533,6 +1533,8 @@ body.js .reveal.is-in {
 }
 
 .trust-strip .num .unit {
+  font-family: var(--font-sans); /* 모노 공백 폭으로 "일 이내" 가 벌어지지 않게 */
+  letter-spacing: -0.01em;
   font-size: 0.5em;
   font-weight: 600;
   margin-left: 2px;
@@ -1540,7 +1542,8 @@ body.js .reveal.is-in {
 
 /* 도구 항목(R · Python · SAS): 숫자가 아니라 작게, 숫자 행과 밑선 맞춤 */
 .trust-strip .num.is-text {
-  font-size: clamp(17px, 1.7vw, 22px);
+  font-size: clamp(15px, 1.7vw, 22px);
+  white-space: nowrap;
   letter-spacing: 0;
   display: flex;
   align-items: flex-end;
@@ -1615,12 +1618,6 @@ body.js .reveal.is-in {
   gap: 12px;
 }
 
-.sample .cap-head .no {
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  color: var(--faint);
-}
-
 .sample .cap-head .t {
   font-size: 15px;
   font-weight: 700;
@@ -1640,11 +1637,11 @@ body.js .reveal.is-in {
   color: var(--muted);
 }
 
-/* "샘플 · 합성 데이터" 고정 표기 — 모노, 최저 위계(4.5:1 유지) */
+/* "샘플 · 합성 데이터" 고정 표기 — 의미 있는 텍스트라 --muted(배경 대비 7:1). --faint 는 4.47:1 로 AA 미달 */
 .sample .tag {
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--faint);
+  color: var(--muted);
   white-space: nowrap;
 }
 
@@ -1652,7 +1649,7 @@ body.js .reveal.is-in {
 .sample.is-compact {
   border-top: 0;
   padding-top: 4px;
-  max-width: 560px;
+  max-width: 640px;
 }
 
 .sample.is-compact figcaption {
@@ -1816,7 +1813,7 @@ body.js .reveal.is-in {
 
 .work-card .year {
   margin-left: auto;
-  color: var(--faint);
+  color: var(--muted);
 }
 
 .work-card .t {
@@ -1832,4 +1829,27 @@ body.js .reveal.is-in {
   font-size: 13px;
   line-height: 1.6;
   color: var(--muted);
+}
+
+/* === 2026-10 시각 비평 반영 === */
+/* 스트립이 hero·Why 사이에서 뜨지 않게 Why 상단 여백 축소 (기존 .section 규칙 무수정) */
+.trust + .section {
+  padding-top: clamp(64px, 8vw, 104px);
+}
+
+/* 샘플 그림 원본 보기 링크: hover 효과 없이 확대 커서만 */
+.sample-frame a {
+  display: block;
+  cursor: zoom-in;
+}
+
+/* 모바일에서 lede 가 있는 섹션 헤더의 번호가 다음 줄로 떨어져 고아가 되는 문제 (홈 Services·Deliverables·FAQ) */
+@media (max-width: 600px) {
+  .section-head {
+    flex-wrap: nowrap;
+  }
+  .section-head > div {
+    flex: 1 1 0;
+    min-width: 0;
+  }
 }
