@@ -1,0 +1,26 @@
+{{/* 구조화 데이터 — 전 페이지 ProfessionalService, 홈 WebSite. 값은 hugo.toml params·services front matter 에서 렌더 (주소는 구 단위까지만). FAQPage 는 contact 의 faq.html 이 별도 출력 */}}
+{{ $b := site.Params.business }}
+{{ $addr := split $b.address " " }}
+{{ $offers := slice }}
+{{ with site.GetPage "/services" }}{{ range .Params.services }}
+  {{ $offers = $offers | append (dict
+    "@type" "Offer"
+    "itemOffered" (dict "@type" "Service" "name" .title "description" (.summary | default "") "url" (printf "%sservices/#service-%s" site.BaseURL .number))) }}
+{{ end }}{{ end }}
+{{ $org := dict
+  "@context" "https://schema.org"
+  "@type" "ProfessionalService"
+  "@id" (printf "%s#organization" site.BaseURL)
+  "name" $b.name
+  "alternateName" "Data Insight Lab"
+  "url" site.BaseURL
+  "email" site.Params.email
+  "image" ("images/og-card.png" | absURL)
+  "logo" ("images/logo_simbol.png" | absURL)
+  "address" (dict "@type" "PostalAddress" "addressCountry" "KR" "addressRegion" (index $addr 0) "addressLocality" (index $addr 1))
+  "founder" (dict "@type" "Person" "name" $b.owner)
+  "hasOfferCatalog" (dict "@type" "OfferCatalog" "name" "서비스" "itemListElement" $offers) }}
+<script type="application/ld+json">{{ $org | jsonify | safeJS }}</script>
+{{ if .IsHome }}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@type" "WebSite" "name" site.Title "url" site.BaseURL "inLanguage" "ko-KR" "publisher" (dict "@id" (printf "%s#organization" site.BaseURL)) | jsonify | safeJS }}</script>
+{{ end }}

@@ -10,12 +10,20 @@ disableKinds = ['taxonomy', 'term']
 # robots.txt 생성 (layouts/robots.txt 템플릿 사용)
 enableRobotsTXT = true
 
+# sitemap lastmod 를 git 커밋 시각에서 (배포 워크플로 checkout fetch-depth: 0 전제)
+enableGitInfo = true
+
 [params]
   description = '데이터 분석 · AI/ML 모델링 · 컨설팅 전문 기업'
   email = 'yhkim@di-lab.io'
   phone = '010-8630-5881'
   # Web3Forms 폼 전송 키 (공개되어도 무방 — 수신 주소 매핑용)
   web3formsKey = 'c145dadc-2792-43b0-bd01-9bd182b2af30'
+
+# 검색엔진 소유 확인 — 값이 비어 있으면 메타 태그를 출력하지 않음
+[params.verify]
+  google = ""
+  naver = ""
 
 # 실적 숫자 단일 소스 (완료 건수 합계를 10단위 내림, 집계 근거는 NOTES.md)
 [params.stats]

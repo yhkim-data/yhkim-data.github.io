@@ -18,6 +18,10 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="{{ "images/og-card.png" | absURL }}">
+  {{- with site.Params.verify }}{{ with .google }}
+  <meta name="google-site-verification" content="{{ . }}">{{ end }}{{ with .naver }}
+  <meta name="naver-site-verification" content="{{ . }}">{{ end }}{{ end }}
+  {{ partial "schema.html" . }}
   <!-- 폰트: 자체 호스팅 (Pretendard variable dynamic subset + IBM Plex Mono latin) -->
   <link rel="stylesheet" href="/fonts/pretendard.css">
   <link rel="stylesheet" href="/fonts/plexmono.css">
