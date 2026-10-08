@@ -11,7 +11,8 @@
   </div>
 </header>
 
-<!-- 서비스 아코디언: 카피는 content/services/index.md front matter에서 관리 -->
+<!-- 서비스 아코디언: 카피는 content/services/index.md front matter에서 관리.
+     R3: summary 필드를 제목 아래 한 줄(.sum)로 — 접힌 상태에서도 서비스 내용을 훑을 수 있게 -->
 <section class="svc-list">
   <div class="svc-list-inner">
     {{ range $i, $s := .Params.services }}
@@ -19,7 +20,10 @@
       <summary>
         <span class="head-left">
           <span class="no" aria-hidden="true">{{ $s.number }}</span>
-          <span class="t">{{ $s.title }}</span>
+          <span class="tt">
+            <span class="t">{{ $s.title }}</span>
+            {{ with $s.summary }}<span class="sum">{{ . }}</span>{{ end }}
+          </span>
         </span>
         <span class="sign" aria-hidden="true"></span>
       </summary>

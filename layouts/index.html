@@ -129,7 +129,7 @@
   </div>
 </section>
 
-<!-- 03 Services teaser: 서비스 페이지 front matter 실데이터 -->
+<!-- 03 Services teaser: 서비스 페이지 front matter 실데이터 (R3: summary·duration 추가, .is-card) -->
 <section class="section flush">
   <div style="max-width:var(--max-width);margin-inline:auto;">
     <div class="section-head reveal" style="margin-bottom:clamp(18px,3vw,34px);">
@@ -141,7 +141,14 @@
     </div>
     <div class="svc-teaser-grid reveal">
       {{ with .Site.GetPage "/services" }}{{ range .Params.services }}
-      <a href="/services/#service-{{ .number }}" class="svc-teaser"><span class="no" aria-hidden="true">{{ .number }}</span><span class="t">{{ .title }}</span></a>
+      <a href="/services/#service-{{ .number }}" class="svc-teaser is-card">
+        <span class="no" aria-hidden="true">{{ .number }}</span>
+        <span class="body">
+          <span class="t">{{ .title }}</span>
+          {{ with .summary }}<span class="sum">{{ . }}</span>{{ end }}
+          <span class="dur">표준 기간 · {{ .duration }}</span>
+        </span>
+      </a>
       {{ end }}{{ end }}
     </div>
     <div class="after-grid-link reveal">

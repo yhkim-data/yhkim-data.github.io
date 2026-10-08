@@ -1925,3 +1925,65 @@ body.js .reveal.is-in {
   color: var(--ink);
 }
 
+/* --- R3 Services 티저: 번호 · 서비스명 · 한 줄 설명 · 표준 기간 --- */
+/* .svc-teaser(flex, baseline, gap 16px) 안에서 .no 옆에 세로 적층 본문 .body 를 둔다 */
+.svc-teaser.is-card {
+  align-items: baseline;
+  padding: clamp(22px, 2.6vw, 30px) 0;
+}
+
+.svc-teaser.is-card .body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* 한 줄 설명: 보조 본문(--muted, 배경 대비 7:1) */
+.svc-teaser.is-card .sum {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* 표준 기간: 모노 소형. 라벨("표준 기간")과 값을 가운뎃점으로 — 샘플 캡션 "샘플 · 합성 데이터" 와 같은 문법 */
+.svc-teaser.is-card .dur {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* 링크 hover: 서비스명만 accent-text 로 (work-row 의 색 전환과 같은 어휘, 패딩 이동은 없음) */
+.svc-teaser.is-card .t {
+  transition: color 0.3s ease;
+}
+
+.svc-teaser.is-card:hover .t,
+.svc-teaser.is-card:focus-visible .t {
+  color: var(--accent-text);
+}
+
+/* --- (선택) services 페이지 아코디언: 제목 아래 summary 한 줄 (services.html 채택 시에만) --- */
+/* .head-left(flex, baseline) 안에서 .t 를 .tt 로 감쌌다. .svc-row .t / [open] .t 는 후손 선택자라 그대로 동작 */
+.svc-row .tt {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.svc-row .sum {
+  font-size: 14.5px;
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+/* 펼친 상태에서는 본문(이런 분께·진행 방식)이 같은 내용을 더 자세히 말하므로 숨겨 중복을 피한다 */
+.svc-row[open] .sum {
+  display: none;
+}
+
