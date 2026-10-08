@@ -1482,3 +1482,99 @@ body.js .reveal.is-in {
     display: none;
   }
 }
+
+/* ------------------------------------------------
+   2026-10 고도화 추가분 — main.css 끝에 추가 (기존 규칙 무수정)
+   ------------------------------------------------ */
+
+/* === 산출물 샘플 그림 (홈 Deliverables · services 아코디언 공용) === */
+.sample-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(28px, 4vw, 40px) clamp(24px, 4vw, 56px);
+}
+
+@media (min-width: 880px) {
+  .sample-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.sample {
+  margin: 0;
+  border-top: 1px solid var(--line);
+  padding-top: clamp(16px, 2vw, 22px);
+  min-width: 0;
+}
+
+/* 흰 종이 + 헤어라인: 그림 배경(#fff)이 페이지 배경(#F5F6F8)에 녹지 않게 가장자리만 정의. 그림자·라운드 없음 */
+.sample-frame {
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.sample-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.sample figcaption {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.sample .cap-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.sample .cap-head .no {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--faint);
+}
+
+.sample .cap-head .t {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.sample .cap-sub {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.sample .kind {
+  color: var(--muted);
+}
+
+/* "샘플 · 합성 데이터" 고정 표기 — 모노, 최저 위계(4.5:1 유지) */
+.sample .tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--faint);
+  white-space: nowrap;
+}
+
+/* services 아코디언 안(.svc-field .v): 상단선 없이, 값 열 폭 안에서 */
+.sample.is-compact {
+  border-top: 0;
+  padding-top: 4px;
+  max-width: 560px;
+}
+
+.sample.is-compact figcaption {
+  margin-top: 10px;
+}
+

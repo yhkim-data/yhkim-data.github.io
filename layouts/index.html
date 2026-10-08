@@ -108,12 +108,33 @@
   </div>
 </section>
 
-<!-- 04 Selected Work: 프로젝트 front matter의 featured 항목 (수행 사례 div 2 → 공개 프로젝트 a 1, 번호 연속) -->
+<!-- 04 Deliverables: services front matter 의 sample.featured 항목 (산출물 샘플 그림, 합성 데이터) -->
+<section class="section flush">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="section-head reveal">
+      <div style="max-width:640px;">
+        <h2>Deliverables</h2>
+        <p class="lede">어떤 형태로 결과를 받게 되는지 샘플로 확인할 수 있습니다. 모든 샘플은 합성 데이터를 사용했으며, 실제 의뢰 데이터는 포함하지 않습니다.</p>
+      </div>
+      <span class="section-no" aria-hidden="true">04</span>
+    </div>
+    <div class="sample-grid reveal">
+      {{ with .Site.GetPage "/services" }}{{ range $s := .Params.services }}{{ with $s.sample }}{{ if .featured }}
+      {{ partial "sample-figure.html" (dict "svc" $s "compact" false) }}
+      {{ end }}{{ end }}{{ end }}{{ end }}
+    </div>
+    <div class="after-grid-link reveal">
+      <a href="/services/" class="link-accent">서비스별 산출물 보기 <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 05 Selected Work: 프로젝트 front matter의 featured 항목 (수행 사례 div 2 → 공개 프로젝트 a 1, 번호 연속) -->
 <section class="section flush">
   <div style="max-width:var(--max-width);margin-inline:auto;">
     <div class="section-head reveal" style="margin-bottom:clamp(10px,2vw,22px);">
       <h2>Selected Work</h2>
-      <span class="section-no" aria-hidden="true">04</span>
+      <span class="section-no" aria-hidden="true">05</span>
     </div>
     {{ $n := 0 }}
     {{ with .Site.GetPage "/projects" }}

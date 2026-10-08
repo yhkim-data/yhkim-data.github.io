@@ -1,0 +1,15 @@
+<!-- 산출물 샘플 그림 — dict: svc(services 항목) · compact(true 면 번호·서비스명 생략, services 아코디언용). 캡션 "샘플 · 합성 데이터" 는 고정 -->
+{{ $s := .svc }}
+{{ with $s.sample }}
+<figure class="sample{{ if $.compact }} is-compact{{ end }}">
+  <div class="sample-frame">
+    <img src="{{ .src }}" width="960" height="640" alt="{{ .alt }}" loading="lazy" decoding="async">
+  </div>
+  <figcaption>
+    {{ if not $.compact }}
+    <span class="cap-head"><span class="no" aria-hidden="true">{{ $s.number }}</span><span class="t">{{ $s.title }}</span></span>
+    {{ end }}
+    <span class="cap-sub"><span class="kind">{{ .caption }}</span><span class="tag">샘플 · 합성 데이터</span></span>
+  </figcaption>
+</figure>
+{{ end }}
