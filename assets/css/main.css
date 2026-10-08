@@ -1482,3 +1482,574 @@ body.js .reveal.is-in {
     display: none;
   }
 }
+
+/* ------------------------------------------------
+   2026-10 고도화 추가분 — main.css 끝에 추가 (기존 규칙 무수정)
+   ------------------------------------------------ */
+
+/* === 신뢰 스트립 (홈 hero 아래, 밝은 배경 · 번호 없음) === */
+/* .section 클래스를 쓰지 않는다 — .section + .section 규칙으로 Why 상단 패딩이 0 이 되는 것 방지 */
+.trust {
+  padding: clamp(28px, 4vw, 44px) var(--pad-x) 0;
+}
+
+.trust-strip {
+  list-style: none;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-bottom: 1px solid var(--line);
+}
+
+.trust-strip li {
+  padding: clamp(20px, 2.4vw, 30px) clamp(12px, 2vw, 24px) clamp(20px, 2.4vw, 30px) 0;
+  min-width: 0;
+}
+
+/* 모바일 2×2: 짝수 셀 왼쪽 괘선, 3·4번 셀 위 괘선 */
+.trust-strip li:nth-child(even) {
+  border-left: 1px solid var(--line);
+  padding-left: clamp(16px, 3vw, 40px);
+}
+
+.trust-strip li:nth-child(n+3) {
+  border-top: 1px solid var(--line);
+}
+
+.trust-strip .num {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: clamp(30px, 3.4vw, 44px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  min-height: 1em;
+}
+
+.trust-strip .num .plus {
+  color: var(--accent-text);
+}
+
+.trust-strip .num .unit {
+  font-family: var(--font-sans); /* 모노 공백 폭으로 "일 이내" 가 벌어지지 않게 */
+  letter-spacing: -0.01em;
+  font-size: 0.5em;
+  font-weight: 600;
+  margin-left: 2px;
+}
+
+/* 도구 항목(R · Python · SAS): 숫자가 아니라 작게, 숫자 행과 밑선 맞춤 */
+.trust-strip .num.is-text {
+  font-size: clamp(15px, 1.7vw, 22px);
+  white-space: nowrap;
+  letter-spacing: 0;
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(30px, 3.4vw, 44px);
+}
+
+.trust-strip .cap {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+@media (min-width: 880px) {
+  .trust-strip {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .trust-strip li:nth-child(n+3) {
+    border-top: 0;
+  }
+  .trust-strip li + li {
+    border-left: 1px solid var(--line);
+    padding-left: clamp(24px, 3vw, 48px);
+  }
+}
+
+/* === 산출물 샘플 그림 (홈 Deliverables · services 아코디언 공용) === */
+.sample-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(28px, 4vw, 40px) clamp(24px, 4vw, 56px);
+}
+
+@media (min-width: 880px) {
+  .sample-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.sample {
+  margin: 0;
+  border-top: 1px solid var(--line);
+  padding-top: clamp(16px, 2vw, 22px);
+  min-width: 0;
+}
+
+/* 흰 종이 + 헤어라인: 그림 배경(#fff)이 페이지 배경(#F5F6F8)에 녹지 않게 가장자리만 정의. 그림자·라운드 없음 */
+.sample-frame {
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.sample-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.sample figcaption {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.sample .cap-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.sample .cap-head .t {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.sample .cap-sub {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.sample .kind {
+  color: var(--muted);
+}
+
+/* "샘플 · 합성 데이터" 고정 표기 — 의미 있는 텍스트라 --muted(배경 대비 7:1). --faint 는 4.47:1 로 AA 미달 */
+.sample .tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* services 아코디언 안(.svc-field .v): 상단선 없이, 값 열 폭 안에서 */
+.sample.is-compact {
+  border-top: 0;
+  padding-top: 4px;
+  max-width: 640px;
+}
+
+.sample.is-compact figcaption {
+  margin-top: 10px;
+}
+
+/* === FAQ 아코디언 (.svc-row 문법 복제 — 문장형 질문용 경량판) === */
+.faq-list {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-row {
+  border-top: 1px solid var(--line);
+}
+
+.faq-row summary {
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(14px, 2vw, 24px);
+  padding: clamp(18px, 2.2vw, 26px) 0;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
+  transition: box-shadow 0.3s ease, padding-left 0.3s ease;
+}
+
+.faq-row summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-row[open] summary {
+  padding-left: 16px;
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.faq-row .no {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--faint);
+  flex: none;
+  width: 36px;
+  padding-top: 5px;
+}
+
+.faq-row .q {
+  flex: 1 1 auto;
+  font-size: clamp(16px, 1.5vw, 19px);
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  transition: color 0.3s ease;
+}
+
+.faq-row[open] .q {
+  color: var(--accent-text);
+}
+
+.faq-row .sign {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1;
+  flex: none;
+  padding-top: 3px;
+  color: rgba(11, 15, 26, 0.5);
+}
+
+.faq-row .sign::after {
+  content: "+";
+}
+
+.faq-row[open] .sign {
+  color: var(--accent-text);
+}
+
+.faq-row[open] .sign::after {
+  content: "\2212";
+}
+
+/* 답변: 열린 summary 인덴트(16px) + 번호폭(36px) + gap 만큼 들여 질문 텍스트와 정렬 */
+.faq-body {
+  padding: 0 0 clamp(22px, 2.6vw, 32px) calc(16px + 36px + clamp(14px, 2vw, 24px));
+  max-width: 720px;
+  font-size: clamp(15px, 1.1vw, 16.5px);
+  line-height: 1.8;
+  color: var(--body);
+}
+
+.faq-body p + p,
+.faq-body p + ul,
+.faq-body ul + p {
+  margin-top: 10px;
+}
+
+.faq-body ul {
+  padding-left: 1.2em;
+}
+
+.faq-body a {
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .faq-row summary {
+    gap: 12px;
+  }
+  .faq-body {
+    padding-left: calc(16px + 36px + 12px);
+  }
+}
+
+/* === 수행 사례 카드 그리드 (projects, 비링크 · hover 없음) === */
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0 clamp(32px, 5vw, 72px);
+  border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 820px) {
+  .work-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.work-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: clamp(22px, 2.8vw, 34px) 0 clamp(24px, 3vw, 38px);
+  border-top: 1px solid var(--line);
+  min-width: 0;
+}
+
+.work-card .meta {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+}
+
+.work-card .no {
+  font-weight: 500;
+  color: var(--faint);
+}
+
+/* 분야 라벨: .svc-field .k 와 같은 톤(산세리프 소형 캡스 느낌, accent-text) */
+.work-card .field {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--accent-text);
+}
+
+.work-card .year {
+  margin-left: auto;
+  color: var(--muted);
+}
+
+.work-card .t {
+  font-size: clamp(19px, 2vw, 25px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.28;
+  color: var(--ink);
+}
+
+.work-card .stack {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* === 2026-10 시각 비평 반영 === */
+/* 스트립이 hero·Why 사이에서 뜨지 않게 Why 상단 여백 축소 (기존 .section 규칙 무수정) */
+.trust + .section {
+  padding-top: clamp(64px, 8vw, 104px);
+}
+
+/* 샘플 그림 원본 보기 링크: hover 효과 없이 확대 커서만 */
+.sample-frame a {
+  display: block;
+  cursor: zoom-in;
+}
+
+/* 모바일에서 lede 가 있는 섹션 헤더의 번호가 다음 줄로 떨어져 고아가 되는 문제 (홈 Services·Deliverables·FAQ).
+   제목+lede 를 div 로 감싼 헤더에만 적용해 다른 페이지 헤더에는 영향 없음 */
+@media (max-width: 600px) {
+  .section-head:has(> div) {
+    flex-wrap: nowrap;
+  }
+  .section-head > div {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+/* === 2026-10 고도화 2차: 홈 상단(Process·Services·Deliverables) 정보 보강 === */
+/* 추가 전용. 기존 .history-row / .svc-teaser / .sample-grid 규칙은 건드리지 않고
+   한정 선택자(.process-timeline …, .svc-teaser.is-card, .sample-grid.is-lead-layout)로만 덮는다 */
+
+/* --- R2 Process: 단계별 "받는 것" 3열 --- */
+/* 모바일(<880px)은 기존 flex-wrap 유지. .gets 가 한 줄 전부를 차지해 본문 아래에 적층 */
+.process-timeline .history-row .gets {
+  flex: 1 1 100%;
+  min-width: 0;
+  margin-top: 6px;
+}
+
+/* 라벨: .svc-field .k 와 같은 톤(산세리프 12px 굵게, accent-text). 의미 텍스트라 --faint 금지 */
+.process-timeline .gets .k {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--accent-text);
+  margin-bottom: 8px;
+}
+
+.process-timeline .gets ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* 항목: 본문 14.5px(.history-row p 와 동일 크기), 색은 --body 로 한 단계 진하게 — 설명문(muted)과 위계 구분 */
+.process-timeline .gets li {
+  font-size: 14.5px;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--body);
+}
+
+/* 데스크톱(≥880px): 번호 · 단계 설명 · 받는 것 3열 그리드.
+   열 폭은 기존 marker 폭(clamp 70~110px)·열 간격(clamp 24~56px)을 그대로 써서 Why·Work 행과 좌측 정렬 유지 */
+@media (min-width: 880px) {
+  .process-timeline .history-row {
+    display: grid;
+    grid-template-columns: clamp(70px, 8vw, 110px) minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: clamp(24px, 4vw, 56px);
+    align-items: baseline;
+  }
+
+  .process-timeline .history-row .body {
+    min-width: 0;
+  }
+
+  .process-timeline .history-row .gets {
+    margin-top: 0;
+  }
+}
+
+/* 섹션 하단 전체 기간 안내: 타임라인 하단선 아래 한 줄. 숫자는 <strong> 으로 잉크색 */
+.process-note {
+  margin-top: clamp(18px, 2.4vw, 28px);
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 880px;
+}
+
+.process-note strong {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* --- R3 Services 티저: 번호 · 서비스명 · 한 줄 설명 · 표준 기간 --- */
+/* .svc-teaser(flex, baseline, gap 16px) 안에서 .no 옆에 세로 적층 본문 .body 를 둔다 */
+.svc-teaser.is-card {
+  align-items: baseline;
+  padding: clamp(22px, 2.6vw, 30px) 0;
+}
+
+.svc-teaser.is-card .body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* 한 줄 설명: 보조 본문(--muted, 배경 대비 7:1) */
+.svc-teaser.is-card .sum {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* 표준 기간: 모노 소형. 라벨("표준 기간")과 값을 가운뎃점으로 — 샘플 캡션 "샘플 · 합성 데이터" 와 같은 문법 */
+.svc-teaser.is-card .dur {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* 링크 hover: 서비스명만 accent-text 로 (work-row 의 색 전환과 같은 어휘, 패딩 이동은 없음) */
+.svc-teaser.is-card .t {
+  transition: color 0.3s ease;
+}
+
+.svc-teaser.is-card:hover .t,
+.svc-teaser.is-card:focus-visible .t {
+  color: var(--accent-text);
+}
+
+/* --- R4 Deliverables: 큰 것 1장(좌) + 작은 것 2장(우, 세로 적층) --- */
+/* DOM 은 서비스 순서(01·02·05) 유지, lead 만 명시 배치 → 모바일은 기존 1열 순서 그대로 */
+@media (min-width: 880px) {
+  .sample-grid.is-lead-layout {
+    /* 13:5 — 3:2 그림 + 캡션 기준으로 좌 1장 높이 ≈ 우 2장 높이 + 행 간격 (5:2 에서 우측 11px 초과 → 보정) */
+    grid-template-columns: minmax(0, 13fr) minmax(0, 5fr);
+    grid-template-rows: auto auto;
+    align-items: start;
+  }
+
+  .sample-grid.is-lead-layout .sample.is-lead {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+
+  /* 우측 2장은 자동 배치(2열 1행 → 2열 2행). 우측 열 높이가 lead 보다 짧으면 남는 높이는 행에 균등 분배됨 */
+}
+
+/* lead 캡션 제목만 한 단계 크게 — 그림 크기와 위계 일치 */
+.sample.is-lead .cap-head .t {
+  font-size: 17px;
+}
+
+/* --- (선택) services 페이지 아코디언: 제목 아래 summary 한 줄 (services.html 채택 시에만) --- */
+/* .head-left(flex, baseline) 안에서 .t 를 .tt 로 감쌌다. .svc-row .t / [open] .t 는 후손 선택자라 그대로 동작 */
+.svc-row .tt {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.svc-row .sum {
+  font-size: 14.5px;
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+/* 펼친 상태에서는 본문(이런 분께·진행 방식)이 같은 내용을 더 자세히 말하므로 숨겨 중복을 피한다 */
+.svc-row[open] .sum {
+  display: none;
+}
+
+/* === 홈 Selected Work 비링크 행 (div.work-row) — 링크용 hover 제거, a.work-row 는 그대로 === */
+div.work-row:hover {
+  color: var(--ink);
+  box-shadow: none;
+  padding-left: 0;
+  background: none;
+}
+
+/* === 2차 시각 비평 반영 === */
+/* Services 카드: 설명이 2줄인 칸이 있어도 기간 줄을 카드 하단에 정렬 */
+.svc-teaser.is-card {
+  align-items: stretch;
+}
+.svc-teaser.is-card .no {
+  padding-top: 5px;
+}
+.svc-teaser.is-card .body {
+  flex: 1 1 auto;
+}
+.svc-teaser.is-card .dur {
+  margin-top: auto;
+}
+
+/* services 아코디언: summary 줄이 생긴 뒤에도 +/− 기호를 제목 첫 줄에 맞춤 */
+.svc-list .svc-row summary {
+  align-items: flex-start;
+}
+.svc-list .svc-row .sign {
+  line-height: calc(clamp(21px, 2.4vw, 30px) * 1.25);
+}
+
+/* Deliverables: 모바일에서도 큰 자리 샘플을 먼저 */
+@media (max-width: 879px) {
+  .sample-grid.is-lead-layout .sample.is-lead {
+    order: -1;
+  }
+}
+
+/* 앵커 이동 시 고정 헤더에 가리지 않게 (홈 Services 카드 → /services/#service-0N, /contact/#faq) */
+.svc-row,
+#faq {
+  scroll-margin-top: var(--header-height);
+}

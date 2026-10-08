@@ -21,6 +21,9 @@
   </div>
 </section>
 
+<!-- 신뢰 스트립 (번호 없음, 밝은 배경): 값은 hugo.toml params -->
+{{ partial "trust-strip.html" . }}
+
 <!-- 01 Why -->
 <section class="section">
   <div style="max-width:var(--max-width);margin-inline:auto;">
@@ -34,10 +37,11 @@
     </div>
     <div class="why-row reveal">
       <div class="why-title"><span class="no" aria-hidden="true">02</span><h3>공공조달 인증,<br>갖추고 있습니다</h3></div>
-      <p>여성기업·중소기업·SW사업자 인증 보유. 나라장터 등록을 완료하여 수의계약과 경쟁입찰에 모두 참여합니다.</p>
+      <p>여성기업·중소기업·SW사업자·창업기업 확인 등 공공조달 인증 {{ .Site.Params.trust.certs_count }}종을 보유하고, 나라장터 등록을 완료하여 수의계약과 경쟁입찰에 모두 참여합니다.</p>
     </div>
     <div class="why-row reveal">
-      <div class="why-title"><span class="no" aria-hidden="true">03</span><h3>{{ .Site.Params.stats.projects_count }}건 이상의 분석,<br>검증된 방법론</h3></div>
+      {{/* R5: 건수 대신 방법론 중심 제목 (건수는 신뢰 스트립에서 이미 노출) */}}
+      <div class="why-title"><span class="no" aria-hidden="true">03</span><h3>검증된 방법론으로,<br>엄밀하게 분석합니다</h3></div>
       <p>보건의료 빅데이터, 구조방정식, 딥러닝 모델링 프로젝트를 수행했습니다. 학술적 엄밀함과 실무 감각을 함께 갖추고 있습니다.</p>
     </div>
   </div>
@@ -53,13 +57,21 @@
       </div>
       <span class="section-no" aria-hidden="true">02</span>
     </div>
-    <!-- 타임라인 컴포넌트: 구 about '걸어온 길'(커밋 1dfac1e) 마커·괘선 스타일 이식 -->
+    <!-- 타임라인 컴포넌트: 구 about '걸어온 길'(커밋 1dfac1e) 마커·괘선 스타일 이식.
+         R2: 각 단계 오른쪽에 "받는 것"(.gets) 열 추가 — 데스크톱 3열 그리드, 모바일 세로 적층 (add.css) -->
     <div class="process-timeline reveal">
       <div class="history-row">
         <div class="marker"><span class="dot" aria-hidden="true"></span><span class="no" aria-hidden="true">01</span></div>
         <div class="body">
           <h3 class="step">Diagnose</h3>
           <p>보유 데이터와 과제 목표를 검토하고 분석 가능성을 진단합니다.</p>
+        </div>
+        <div class="gets">
+          <span class="k">받는 것</span>
+          <ul>
+            <li>분석 가능성 진단 결과</li>
+            <li>적합한 서비스와 예상 일정 안내</li>
+          </ul>
         </div>
       </div>
       <div class="history-row">
@@ -68,12 +80,26 @@
           <h3 class="step">Design</h3>
           <p>방법론과 추진 체계, 산출물 기준을 설계합니다.</p>
         </div>
+        <div class="gets">
+          <span class="k">받는 것</span>
+          <ul>
+            <li>방법론·추진 체계 제안</li>
+            <li>산출물 기준과 과업 범위 확정</li>
+          </ul>
+        </div>
       </div>
       <div class="history-row">
         <div class="marker"><span class="dot" aria-hidden="true"></span><span class="no" aria-hidden="true">03</span></div>
         <div class="body">
           <h3 class="step">Model</h3>
           <p>통계 분석과 모델링을 수행해 결과를 도출합니다.</p>
+        </div>
+        <div class="gets">
+          <span class="k">받는 것</span>
+          <ul>
+            <li>분석·모델링 결과</li>
+            <li>재현 가능한 코드와 문서</li>
+          </ul>
         </div>
       </div>
       <div class="history-row">
@@ -82,12 +108,29 @@
           <h3 class="step">Deliver</h3>
           <p>결과를 검증하고 보고서와 데이터셋으로 전달합니다.</p>
         </div>
+        <div class="gets">
+          <span class="k">받는 것</span>
+          <ul>
+            <li>검증을 마친 최종 산출물</li>
+            <li>서비스별 산출물(보고서·데이터셋·코드 등)</li>
+          </ul>
+        </div>
       </div>
     </div>
+    {{/* 전체 기간 안내: services front matter 의 duration 문자열("2~6주", "규모별 협의 (통상 6주~)")에서 숫자만 뽑아 min·max 계산.
+         소프트웨어 개발은 상한이 없으므로 둘째 문장으로 별도 보충 (고정 문구) */}}
+    {{ $min := 0 }}{{ $max := 0 }}
+    {{ with .Site.GetPage "/services" }}{{ range .Params.services }}
+      {{ range findRE "[0-9]+" (.duration | default "") }}{{ $n := int . }}
+        {{ if or (eq $min 0) (lt $n $min) }}{{ $min = $n }}{{ end }}
+        {{ if gt $n $max }}{{ $max = $n }}{{ end }}
+      {{ end }}
+    {{ end }}{{ end }}
+    <p class="process-note reveal">전체 기간은 서비스별 통상 <strong>{{ $min }}~{{ $max }}주</strong>이며, 과업 범위 확정 후 조정합니다. 소프트웨어 개발은 규모에 따라 별도 협의합니다.</p>
   </div>
 </section>
 
-<!-- 03 Services teaser: 서비스 페이지 front matter 실데이터 -->
+<!-- 03 Services teaser: 서비스 페이지 front matter 실데이터 (R3: summary·duration 추가, .is-card) -->
 <section class="section flush">
   <div style="max-width:var(--max-width);margin-inline:auto;">
     <div class="section-head reveal" style="margin-bottom:clamp(18px,3vw,34px);">
@@ -99,7 +142,14 @@
     </div>
     <div class="svc-teaser-grid reveal">
       {{ with .Site.GetPage "/services" }}{{ range .Params.services }}
-      <a href="/services/#service-{{ .number }}" class="svc-teaser"><span class="no" aria-hidden="true">{{ .number }}</span><span class="t">{{ .title }}</span></a>
+      <a href="/services/#service-{{ .number }}" class="svc-teaser is-card">
+        <span class="no" aria-hidden="true">{{ .number }}</span>
+        <span class="body">
+          <span class="t">{{ .title }}</span>
+          {{ with .summary }}<span class="sum">{{ . }}</span>{{ end }}
+          <span class="dur">표준 기간 · {{ .duration }}</span>
+        </span>
+      </a>
       {{ end }}{{ end }}
     </div>
     <div class="after-grid-link reveal">
@@ -108,12 +158,34 @@
   </div>
 </section>
 
-<!-- 04 Selected Work: 프로젝트 front matter의 featured 항목 (수행 사례 div 2 → 공개 프로젝트 a 1, 번호 연속) -->
+<!-- 04 Deliverables: services front matter 의 sample.featured 항목 (산출물 샘플 그림, 합성 데이터).
+     R4: sample.lead 가 true 인 1장을 좌측 큰 자리에 (.is-lead), 나머지 featured 는 우측 세로 적층. DOM 순서는 서비스 순서 유지 -->
+<section class="section flush">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="section-head reveal">
+      <div style="max-width:640px;">
+        <h2>Deliverables</h2>
+        <p class="lede">어떤 형태로 결과를 받게 되는지 샘플로 확인할 수 있습니다. 모든 샘플은 합성 데이터를 사용했으며, 실제 의뢰 데이터는 포함하지 않습니다.</p>
+      </div>
+      <span class="section-no" aria-hidden="true">04</span>
+    </div>
+    <div class="sample-grid is-lead-layout reveal">
+      {{ with .Site.GetPage "/services" }}{{ range $s := .Params.services }}{{ with $s.sample }}{{ if .featured }}
+      {{ partial "sample-figure.html" (dict "svc" $s "compact" false "lead" (default false .lead)) }}
+      {{ end }}{{ end }}{{ end }}{{ end }}
+    </div>
+    <div class="after-grid-link reveal">
+      <a href="/services/" class="link-accent">서비스별 산출물 보기 <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 05 Selected Work: 프로젝트 front matter의 featured 항목 (수행 사례 div 2 → 공개 프로젝트 a 1, 번호 연속) -->
 <section class="section flush">
   <div style="max-width:var(--max-width);margin-inline:auto;">
     <div class="section-head reveal" style="margin-bottom:clamp(10px,2vw,22px);">
       <h2>Selected Work</h2>
-      <span class="section-no" aria-hidden="true">04</span>
+      <span class="section-no" aria-hidden="true">05</span>
     </div>
     {{ $n := 0 }}
     {{ with .Site.GetPage "/projects" }}
@@ -140,6 +212,25 @@
     {{ end }}
     <div class="reveal" style="padding-top:clamp(20px,2.5vw,30px);">
       <a href="/projects/" class="link-accent">프로젝트 전체 보기 <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 06 FAQ: data/faq.yaml 앞 4문항 (JSON-LD 는 contact 에서만 출력) -->
+<section class="section flush">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="section-head reveal" style="margin-bottom:clamp(10px,2vw,22px);">
+      <div style="max-width:640px;">
+        <h2>FAQ</h2>
+        <p class="lede">의뢰 전에 자주 확인하는 내용을 정리했습니다.</p>
+      </div>
+      <span class="section-no" aria-hidden="true">06</span>
+    </div>
+    <div class="reveal">
+      {{ partial "faq.html" (dict "limit" 4 "jsonld" false) }}
+    </div>
+    <div class="reveal" style="padding-top:clamp(20px,2.5vw,30px);">
+      <a href="/contact/#faq" class="link-accent">질문 전체 보기 <span class="arrow" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>

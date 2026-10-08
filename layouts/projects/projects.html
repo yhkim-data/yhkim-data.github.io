@@ -11,22 +11,26 @@
   </div>
 </header>
 
-<!-- 01 수행 사례: 익명 처리, 링크 없음 (front matter cases) -->
+<!-- 01 수행 사례: 익명 처리, 링크 없음 (front matter cases) — 2열 카드 그리드, 비링크라 hover 없음 -->
 <section class="section flush" style="padding-top:clamp(16px,2vw,32px);">
   <div style="max-width:var(--max-width);margin-inline:auto;">
     <div class="section-head reveal" style="margin-bottom:clamp(8px,2vw,20px);">
       <h2 style="font-size:clamp(26px,3.4vw,40px);">수행 사례</h2>
       <span class="section-no" aria-hidden="true" style="font-size:clamp(26px,3vw,44px);">01</span>
     </div>
-    {{ range $i, $c := .Params.cases }}
-    <div class="work-row reveal">
-      <span class="no" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>
-      <div class="body">
+    <div class="work-grid reveal">
+      {{ range $i, $c := .Params.cases }}
+      <div class="work-card">
+        <div class="meta">
+          <span class="no" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>
+          <span class="field">{{ $c.field }}</span>
+          <span class="year">{{ $c.year }}</span>
+        </div>
         <div class="t">{{ $c.title }}</div>
-        <div class="stack">{{ $c.field }} · {{ $c.stack }} · {{ $c.year }}</div>
+        <div class="stack">{{ $c.stack }}</div>
       </div>
+      {{ end }}
     </div>
-    {{ end }}
   </div>
 </section>
 

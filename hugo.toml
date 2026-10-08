@@ -21,6 +21,12 @@ enableRobotsTXT = true
 [params.stats]
   projects_count = 50
 
+# 신뢰 스트립(홈 hero 아래) 값 — 건수는 [params.stats] projects_count 재사용
+[params.trust]
+  reply_days = 3                  # 영업일 기준 회신 기한 (문의 페이지 "영업일 3일 이내" 와 동일하게 유지)
+  certs_count = 4                 # 공공조달 인증·확인서 보유 수 (여성기업·중소기업·SW사업자·창업기업)
+  tools = "R · Python · SAS"      # 주력 도구
+
 # 푸터 사업자 정보 (소재지는 동 단위 표기 유지 — 상세 주소 추가 금지)
 [params.business]
   name = '데이터 인사이트랩'

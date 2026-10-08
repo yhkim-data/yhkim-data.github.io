@@ -11,7 +11,8 @@
   </div>
 </header>
 
-<!-- 서비스 아코디언: 카피는 content/services/index.md front matter에서 관리 -->
+<!-- 서비스 아코디언: 카피는 content/services/index.md front matter에서 관리.
+     R3: summary 필드를 제목 아래 한 줄(.sum)로 — 접힌 상태에서도 서비스 내용을 훑을 수 있게 -->
 <section class="svc-list">
   <div class="svc-list-inner">
     {{ range $i, $s := .Params.services }}
@@ -19,7 +20,10 @@
       <summary>
         <span class="head-left">
           <span class="no" aria-hidden="true">{{ $s.number }}</span>
-          <span class="t">{{ $s.title }}</span>
+          <span class="tt">
+            <span class="t">{{ $s.title }}</span>
+            {{ with $s.summary }}<span class="sum">{{ . }}</span>{{ end }}
+          </span>
         </span>
         <span class="sign" aria-hidden="true"></span>
       </summary>
@@ -28,6 +32,10 @@
         <div class="svc-field"><span class="k">진행 방식</span><span class="v">{{ $s.how }}</span></div>
         <div class="svc-field"><span class="k">표준 기간</span><span class="v">{{ $s.duration }}</span></div>
         <div class="svc-field"><span class="k">산출물</span><span class="v">{{ $s.deliverables }}</span></div>
+        {{/* 산출물 샘플 그림: 기존 k/v 문법 재사용 (값 열에 정렬). figure 는 블록이라 .v 를 div 로 */}}
+        {{ with $s.sample }}
+        <div class="svc-field"><span class="k">샘플</span><div class="v">{{ partial "sample-figure.html" (dict "svc" $s "compact" true) }}</div></div>
+        {{ end }}
         <div class="svc-cta">
           <a class="link-accent" style="font-size:14px;" href="/contact/?service={{ $s.number }}">이 서비스 문의하기 <span class="arrow" aria-hidden="true">→</span></a>
         </div>

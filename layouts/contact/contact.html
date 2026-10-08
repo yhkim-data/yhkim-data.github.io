@@ -107,4 +107,19 @@
   </div>
 </section>
 
+<!-- FAQ: data/faq.yaml 전체. FAQPage JSON-LD 는 사이트에서 이 페이지에만 출력 (Google 중복 마크업 권고) -->
+<section class="section flush" id="faq">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="section-head reveal" style="margin-bottom:clamp(10px,2vw,22px);">
+      <div style="max-width:640px;">
+        <h2>FAQ</h2>
+        <p class="lede">문의 과정과 진행 방식, 개인정보 처리에 대해 자주 묻는 질문입니다.</p>
+      </div>
+    </div>
+    <div class="reveal">
+      {{ partial "faq.html" (dict "jsonld" true) }}
+    </div>
+  </div>
+</section>
+
 {{ end }}
