@@ -1888,7 +1888,7 @@ body.js .reveal.is-in {
 .process-timeline .gets li {
   font-size: 14.5px;
   line-height: 1.6;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--body);
 }
 
@@ -1917,7 +1917,7 @@ body.js .reveal.is-in {
   font-size: 14.5px;
   line-height: 1.7;
   color: var(--muted);
-  max-width: 640px;
+  max-width: 880px;
 }
 
 .process-note strong {
@@ -1969,8 +1969,8 @@ body.js .reveal.is-in {
 /* DOM 은 서비스 순서(01·02·05) 유지, lead 만 명시 배치 → 모바일은 기존 1열 순서 그대로 */
 @media (min-width: 880px) {
   .sample-grid.is-lead-layout {
-    /* 5:2 — 3:2 그림 + 캡션(≈77px) 기준으로 좌 1장 높이 ≈ 우 2장 높이 + 행 간격이 되는 비율 (SPEC 계산 참조) */
-    grid-template-columns: minmax(0, 5fr) minmax(0, 2fr);
+    /* 13:5 — 3:2 그림 + 캡션 기준으로 좌 1장 높이 ≈ 우 2장 높이 + 행 간격 (5:2 에서 우측 11px 초과 → 보정) */
+    grid-template-columns: minmax(0, 13fr) minmax(0, 5fr);
     grid-template-rows: auto auto;
     align-items: start;
   }
@@ -2016,4 +2016,34 @@ div.work-row:hover {
   box-shadow: none;
   padding-left: 0;
   background: none;
+}
+
+/* === 2차 시각 비평 반영 === */
+/* Services 카드: 설명이 2줄인 칸이 있어도 기간 줄을 카드 하단에 정렬 */
+.svc-teaser.is-card {
+  align-items: stretch;
+}
+.svc-teaser.is-card .no {
+  padding-top: 5px;
+}
+.svc-teaser.is-card .body {
+  flex: 1 1 auto;
+}
+.svc-teaser.is-card .dur {
+  margin-top: auto;
+}
+
+/* services 아코디언: summary 줄이 생긴 뒤에도 +/− 기호를 제목 첫 줄에 맞춤 */
+.svc-row summary {
+  align-items: flex-start;
+}
+.svc-row .sign {
+  line-height: calc(clamp(21px, 2.4vw, 30px) * 1.25);
+}
+
+/* Deliverables: 모바일에서도 큰 자리 샘플을 먼저 */
+@media (max-width: 879px) {
+  .sample-grid.is-lead-layout .sample.is-lead {
+    order: -1;
+  }
 }
