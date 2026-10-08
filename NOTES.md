@@ -40,6 +40,32 @@
 5. 홈 Selected Work 의 비링크 `div.work-row` hover — projects 는 카드로 해소, 홈은 범위 밖이라 유지.
 6. FAQ 답변 속 기간·회신·인증 수는 문장이라 params 와 자동 연동되지 않음(yaml 상단 주석으로 연동 지점 명시).
 
+## 2차 — 홈 상단부 밀도 보강
+
+| 위치 | 변경 |
+|---|---|
+| 인증 표기 | 홈 Why 02 와 about 인증 목록에 "창업기업 확인" 추가. about 은 인증 4종 + 나라장터 등록 5행. Why 02 의 인증 수는 `params.trust.certs_count` 로 렌더 |
+| Process 02 | 각 단계 오른쪽에 "받는 것" 열(데스크톱 3열, 모바일 적층). 하단에 전체 기간 안내 — services `duration` 문자열에서 최소·최대 주를 계산(현재 2~10주) |
+| Services 03 | services front matter `summary` 신설. 홈 카드에 한 줄 설명 + 표준 기간, services 아코디언 제목 아래 한 줄(펼치면 숨김) |
+| Deliverables 04 | 큰 1장(좌, `sample.lead` = 통계 조사 분석) + 작은 2장(우, 세로 적층), 13:5 비율. 모바일은 큰 자리 샘플이 먼저 |
+| Why 03 | 제목을 "검증된 방법론으로, 엄밀하게 분석합니다" 로 교체(건수는 스트립·about 에서 노출) |
+| Selected Work 05 | 비링크 `div.work-row` hover 제거. 링크 행 hover 와 하단선은 유지 |
+| services | 템플릿이 읽지 않던 `subheading` 삭제 |
+| 앵커 | `/services/#service-0N` 으로 들어오면 해당 아코디언을 펼치고 고정 헤더 높이만큼 여백(`scroll-margin-top`). 1차 이전부터 접힌 채 헤더에 가려지던 문제 |
+
+### 검증
+- `hugo --gc --minify` 에러·경고 0. 2차 페이즈 커밋 각각 단독 빌드 경고 0.
+- Playwright 1440·380: 기존 기능 검사 전부 통과, 홈 카드 앵커 6개 일치, 앵커 진입 시 아코디언 펼침·헤더 아래 위치 확인. Deliverables 좌우 하단 차 3px, Services 기간 줄·아코디언 기호 정렬 확인.
+- hero 영상: 일반 설정에서 재생 확인. reduced-motion 에서는 기존 CSS 가 영상 요소를 숨겨 poster 도 보이지 않고 단색 네이비로 표시됨(기존 동작, 이번 범위 밖).
+- 시각 비평 7건 중 6건 반영(받는 것 라벨 반복은 모바일 맥락 유지를 위해 유지). diff 리뷰 5건 중 4건 반영.
+- 노출 대조(diff·커밋 메시지·추적 파일·빌드): 2차 신규 0건, 금지어 0, 내부 링크·앵커 깨짐 0.
+- 홈 전송량 1차 대비 +5.6KB.
+
+### 남은 결정 사항(2차)
+1. reduced-motion 사용자에게 hero poster 를 보여줄지(현재 단색). hero 는 이번 범위 밖.
+2. Process 하단의 "소프트웨어 개발은 규모에 따라 별도 협의" 는 고정 문구 — 서비스 구성 변경 시 함께 수정.
+3. services front matter 의 `heading`·`cta` 도 템플릿이 읽지 않는 필드 — 삭제 여부.
+
 ---
 
 # (이전) NOTES — di-lab.io 콘텐츠 현행화 (content/2026-10)
