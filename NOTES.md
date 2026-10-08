@@ -1,4 +1,48 @@
-# NOTES — di-lab.io 콘텐츠 현행화 (content/2026-10, 2026-10-08)
+# NOTES — di-lab.io 고도화 (feat/enrich-2026-10, 2026-10-08)
+
+목표: 글자 위주로 휑한 인상을 장식이 아니라 증거(결과물·숫자·답변)로 채운다. 7월 에디토리얼 톤 유지.
+
+## 변경 요약
+
+| 위치 | 변경 |
+|---|---|
+| 홈 | hero 아래 신뢰 스트립(번호 없음) → Why 01 → Process 02 → Services 03 → **Deliverables 04** → Selected Work 05(번호만 변경) → **FAQ 06** → closing CTA |
+| 홈 스트립 | `50+ 분석 프로젝트 수행 / 3일 이내 영업일 기준 회신 / 4종 공공조달 인증 보유 / R · Python · SAS`. 값은 `hugo.toml` `[params.stats]`·`[params.trust]` 에서 렌더. 모바일 2×2, 데스크톱 1행 |
+| 홈 Deliverables | 샘플 3장(01 데이터 분석·02 AI/ML·05 통계 조사) + "서비스별 산출물 보기". services front matter `sample.featured` 로 선택 |
+| services | 각 서비스 아코디언에 `샘플` 필드로 해당 그림 1장. 그림 클릭 시 원본 SVG(새 창) |
+| 샘플 그림 | `static/images/samples/sample-01~06.svg`, 합성 데이터(고정 표·seed 42), 960×640, 장당 80KB 미만. 생성 스크립트 `tools/samples/make_samples.py`(재실행 시 바이트 동일) |
+| FAQ | `data/faq.yaml` 8문항. 홈은 앞 4문항+전체 보기, contact 는 전체 + FAQPage JSON-LD(사이트에서 한 곳만) |
+| projects | 수행 사례 8건을 2열 카드 그리드(`.work-grid/.work-card`), 비링크라 hover 없음. 홈 Selected Work 는 변경 없음 |
+| CSS | `main.css` 끝에 추가만. `:root` 변경 0, 기존 규칙 수정 0 |
+| repo | `.gitignore` 에 `FAQ_REVIEW.md`, `refs/`, `tools/samples/.cache/`, `__pycache__/` 추가 |
+
+## 설계 결정
+- 스트립은 밝은 배경. hero 가 94vh 라 다크 연장 시 첫 화면이 전부 어두워지고 헤더 다크 전환 대상 추가도 필요해짐.
+- 샘플 그림 텍스트는 글리프 외곽선(path)으로 내장. `<img>` SVG 는 웹폰트를 못 쓰므로. Pretendard 가변 서브셋을 굵기별 정적 TTF 로 병합해 사용(캐시는 커밋 안 함).
+- 그림당 액센트는 1개 요소만. 나머지는 ink·muted·dark-muted·dark-sub 명도 차.
+- FAQ 는 `.svc-row` 를 공유하지 않고 같은 문법의 `.faq-row` 를 추가. 공유하면 기존 규칙 수정이 됨.
+- 샘플 캡션의 "샘플 · 합성 데이터" 는 템플릿 상수(그림 내부에도 고정 표기).
+
+## 검증
+- `hugo --gc --minify` 에러·경고 0. 페이즈별 커밋 각각 단독 빌드도 경고 0.
+- Playwright 1440·380: 홈 섹션 순서·번호, 스트립 값, 샘플 img 의 width·height·alt·lazy·로드, 캡션 고정표기, 가로 넘침 0, FAQ summary Enter/Space 토글과 포커스 표시 통과.
+- CLS: 새 섹션 기여 0. 모바일 홈 0.013 은 hero 텍스트 폰트 교체에서 발생하는 기존 현상.
+- 대비: 의미 텍스트는 muted(배경 대비 7.0:1) 이상. faint(4.47:1)는 aria-hidden 번호에만.
+- 식별정보·내부경로·금지어 대조(diff·커밋 메시지·추적 파일·빌드 결과물): 이번 브랜치 신규 노출 0. 내부 링크 깨짐 0.
+- 시각 비평 10건 중 7건 반영, diff 리뷰 5건 중 4건 반영(샘플 색 지적은 두 색 모두 :root 토큰이라 미반영).
+- 전송량(1440, 풀 스크롤 후, 비압축 응답 본문 합): 홈 +226KB(목표 +400KB 이내), services +72KB, contact +12KB, projects +5KB.
+
+## 남은 결정 사항
+1. 로컬 `FAQ_REVIEW.md` — 수정 횟수·결제·NDA·세금계산서·데이터 파기·비용·방문·저작권 정책 확정 후 FAQ 추가 여부.
+2. "공공조달 인증 4종" — about 인증 목록은 3종+나라장터 등록. 창업기업 확인서를 about 에 올릴지, 라벨을 "인증·등록 4종" 으로 바꿀지.
+3. 공개 프로젝트 "호흡기 질환 발생 요인 분석" stack 의 공공 데이터 출처 약칭 — 기존 문구(이번 변경 아님). 일반화할지.
+4. 홈 Why 03 "50건 이상의 분석" 과 스트립 "50+" 가 한 화면 안에 중복 — Why 03 소제목을 방법론 중심으로 바꿀지(카피 범위 밖이라 보류).
+5. 홈 Selected Work 의 비링크 `div.work-row` hover — projects 는 카드로 해소, 홈은 범위 밖이라 유지.
+6. FAQ 답변 속 기간·회신·인증 수는 문장이라 params 와 자동 연동되지 않음(yaml 상단 주석으로 연동 지점 명시).
+
+---
+
+# (이전) NOTES — di-lab.io 콘텐츠 현행화 (content/2026-10)
 
 ## 변경 요약
 
