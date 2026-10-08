@@ -2010,3 +2010,10 @@ body.js .reveal.is-in {
   display: none;
 }
 
+/* === 홈 Selected Work 비링크 행 (div.work-row) — 링크용 hover 제거, a.work-row 는 그대로 === */
+div.work-row:hover {
+  color: var(--ink);
+  box-shadow: none;
+  padding-left: 0;
+  background: none;
+}
