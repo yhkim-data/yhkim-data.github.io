@@ -168,6 +168,25 @@
   </div>
 </section>
 
+<!-- 06 FAQ: data/faq.yaml 앞 4문항 (JSON-LD 는 contact 에서만 출력) -->
+<section class="section flush">
+  <div style="max-width:var(--max-width);margin-inline:auto;">
+    <div class="section-head reveal" style="margin-bottom:clamp(10px,2vw,22px);">
+      <div style="max-width:640px;">
+        <h2>FAQ</h2>
+        <p class="lede">의뢰 전에 자주 확인하는 내용을 정리했습니다.</p>
+      </div>
+      <span class="section-no" aria-hidden="true">06</span>
+    </div>
+    <div class="reveal">
+      {{ partial "faq.html" (dict "limit" 4 "jsonld" false) }}
+    </div>
+    <div class="reveal" style="padding-top:clamp(20px,2.5vw,30px);">
+      <a href="/contact/#faq" class="link-accent">질문 전체 보기 <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
 {{ partial "closing-cta.html" . }}
 
 {{ end }}

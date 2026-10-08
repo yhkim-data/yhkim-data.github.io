@@ -1,0 +1,26 @@
+<!-- FAQ 아코디언 — data/faq.yaml 공용. dict: limit(앞 n개만, 옵션) · jsonld(true 면 FAQPage JSON-LD 출력, 사이트에서 한 곳만) -->
+{{ $items := hugo.Data.faq }}
+{{ with .limit }}{{ $items = first . $items }}{{ end }}
+<div class="faq-list">
+  {{ range $i, $f := $items }}
+  <details class="faq-row">
+    <summary>
+      <span class="no" aria-hidden="true">Q{{ printf "%02d" (add $i 1) }}</span>
+      <span class="q">{{ $f.q }}</span>
+      <span class="sign" aria-hidden="true"></span>
+    </summary>
+    <div class="faq-body">{{ $f.a | markdownify }}</div>
+  </details>
+  {{ end }}
+</div>
+{{ if .jsonld }}
+{{/* Answer.text 에는 markdownify 결과(제한적 HTML) 그대로. jsonify 가 <·> 를 < 로 이스케이프하므로 script 탈출 없음 */}}
+{{ $qs := slice }}
+{{ range $items }}
+  {{ $qs = $qs | append (dict
+    "@type" "Question"
+    "name" .q
+    "acceptedAnswer" (dict "@type" "Answer" "text" (.a | markdownify | strings.TrimSpace))) }}
+{{ end }}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $qs | jsonify | safeJS }}</script>
+{{ end }}

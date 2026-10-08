@@ -1659,3 +1659,113 @@ body.js .reveal.is-in {
   margin-top: 10px;
 }
 
+/* === FAQ 아코디언 (.svc-row 문법 복제 — 문장형 질문용 경량판) === */
+.faq-list {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-row {
+  border-top: 1px solid var(--line);
+}
+
+.faq-row summary {
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(14px, 2vw, 24px);
+  padding: clamp(18px, 2.2vw, 26px) 0;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
+  transition: box-shadow 0.3s ease, padding-left 0.3s ease;
+}
+
+.faq-row summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-row[open] summary {
+  padding-left: 16px;
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.faq-row .no {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--faint);
+  flex: none;
+  width: 36px;
+  padding-top: 5px;
+}
+
+.faq-row .q {
+  flex: 1 1 auto;
+  font-size: clamp(16px, 1.5vw, 19px);
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  transition: color 0.3s ease;
+}
+
+.faq-row[open] .q {
+  color: var(--accent-text);
+}
+
+.faq-row .sign {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1;
+  flex: none;
+  padding-top: 3px;
+  color: rgba(11, 15, 26, 0.5);
+}
+
+.faq-row .sign::after {
+  content: "+";
+}
+
+.faq-row[open] .sign {
+  color: var(--accent-text);
+}
+
+.faq-row[open] .sign::after {
+  content: "\2212";
+}
+
+/* 답변: 열린 summary 인덴트(16px) + 번호폭(36px) + gap 만큼 들여 질문 텍스트와 정렬 */
+.faq-body {
+  padding: 0 0 clamp(22px, 2.6vw, 32px) calc(16px + 36px + clamp(14px, 2vw, 24px));
+  max-width: 720px;
+  font-size: clamp(15px, 1.1vw, 16.5px);
+  line-height: 1.8;
+  color: var(--body);
+}
+
+.faq-body p + p,
+.faq-body p + ul,
+.faq-body ul + p {
+  margin-top: 10px;
+}
+
+.faq-body ul {
+  padding-left: 1.2em;
+}
+
+.faq-body a {
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .faq-row summary {
+    gap: 12px;
+  }
+  .faq-body {
+    padding-left: calc(16px + 36px + 12px);
+  }
+}
+
