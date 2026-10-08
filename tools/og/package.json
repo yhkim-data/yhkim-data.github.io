@@ -1,0 +1,9 @@
+{
+  "name": "dilab-og-card",
+  "private": true,
+  "type": "module",
+  "description": "og-card.png 생성 (tools/og/make_og.mjs)",
+  "dependencies": {
+    "playwright": "1.54.1"
+  }
+}
