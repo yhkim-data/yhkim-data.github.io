@@ -1487,6 +1487,87 @@ body.js .reveal.is-in {
    2026-10 고도화 추가분 — main.css 끝에 추가 (기존 규칙 무수정)
    ------------------------------------------------ */
 
+/* === 신뢰 스트립 (홈 hero 아래, 밝은 배경 · 번호 없음) === */
+/* .section 클래스를 쓰지 않는다 — .section + .section 규칙으로 Why 상단 패딩이 0 이 되는 것 방지 */
+.trust {
+  padding: clamp(28px, 4vw, 44px) var(--pad-x) 0;
+}
+
+.trust-strip {
+  list-style: none;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-bottom: 1px solid var(--line);
+}
+
+.trust-strip li {
+  padding: clamp(20px, 2.4vw, 30px) clamp(12px, 2vw, 24px) clamp(20px, 2.4vw, 30px) 0;
+  min-width: 0;
+}
+
+/* 모바일 2×2: 짝수 셀 왼쪽 괘선, 3·4번 셀 위 괘선 */
+.trust-strip li:nth-child(even) {
+  border-left: 1px solid var(--line);
+  padding-left: clamp(16px, 3vw, 40px);
+}
+
+.trust-strip li:nth-child(n+3) {
+  border-top: 1px solid var(--line);
+}
+
+.trust-strip .num {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: clamp(30px, 3.4vw, 44px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  min-height: 1em;
+}
+
+.trust-strip .num .plus {
+  color: var(--accent-text);
+}
+
+.trust-strip .num .unit {
+  font-size: 0.5em;
+  font-weight: 600;
+  margin-left: 2px;
+}
+
+/* 도구 항목(R · Python · SAS): 숫자가 아니라 작게, 숫자 행과 밑선 맞춤 */
+.trust-strip .num.is-text {
+  font-size: clamp(17px, 1.7vw, 22px);
+  letter-spacing: 0;
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(30px, 3.4vw, 44px);
+}
+
+.trust-strip .cap {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+@media (min-width: 880px) {
+  .trust-strip {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .trust-strip li:nth-child(n+3) {
+    border-top: 0;
+  }
+  .trust-strip li + li {
+    border-left: 1px solid var(--line);
+    padding-left: clamp(24px, 3vw, 48px);
+  }
+}
+
 /* === 산출물 샘플 그림 (홈 Deliverables · services 아코디언 공용) === */
 .sample-grid {
   display: grid;

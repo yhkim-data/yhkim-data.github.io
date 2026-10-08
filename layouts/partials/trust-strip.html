@@ -1,0 +1,22 @@
+<!-- 신뢰 스트립 (홈 hero 바로 아래, 밝은 배경) — 값은 hugo.toml params.stats·params.trust -->
+{{ $t := .Site.Params.trust }}
+<section class="trust" aria-label="핵심 지표">
+  <ul class="trust-strip reveal">
+    <li>
+      <span class="num">{{ .Site.Params.stats.projects_count }}<span class="plus">+</span></span>
+      <span class="cap">분석 프로젝트 수행</span>
+    </li>
+    <li>
+      <span class="num">{{ $t.reply_days }}<span class="unit">일 이내</span></span>
+      <span class="cap">영업일 기준 회신</span>
+    </li>
+    <li>
+      <span class="num">{{ $t.certs_count }}<span class="unit">종</span></span>
+      <span class="cap">공공조달 인증 보유</span>
+    </li>
+    <li>
+      <span class="num is-text">{{ $t.tools }}</span>
+      <span class="cap">통계·모델링 도구</span>
+    </li>
+  </ul>
+</section>
