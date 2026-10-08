@@ -28,7 +28,7 @@ enableGitInfo = true
 
 # 실적 숫자 단일 소스 (완료 건수 합계를 10단위 내림, 집계 근거는 NOTES.md)
 [params.stats]
-  projects_count = 50
+  projects_count = 40
 
 # 신뢰 스트립(홈 hero 아래) 값 — 건수는 [params.stats] projects_count 재사용
 [params.trust]
