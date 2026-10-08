@@ -1965,6 +1965,29 @@ body.js .reveal.is-in {
   color: var(--accent-text);
 }
 
+/* --- R4 Deliverables: 큰 것 1장(좌) + 작은 것 2장(우, 세로 적층) --- */
+/* DOM 은 서비스 순서(01·02·05) 유지, lead 만 명시 배치 → 모바일은 기존 1열 순서 그대로 */
+@media (min-width: 880px) {
+  .sample-grid.is-lead-layout {
+    /* 5:2 — 3:2 그림 + 캡션(≈77px) 기준으로 좌 1장 높이 ≈ 우 2장 높이 + 행 간격이 되는 비율 (SPEC 계산 참조) */
+    grid-template-columns: minmax(0, 5fr) minmax(0, 2fr);
+    grid-template-rows: auto auto;
+    align-items: start;
+  }
+
+  .sample-grid.is-lead-layout .sample.is-lead {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+
+  /* 우측 2장은 자동 배치(2열 1행 → 2열 2행). 우측 열 높이가 lead 보다 짧으면 남는 높이는 행에 균등 분배됨 */
+}
+
+/* lead 캡션 제목만 한 단계 크게 — 그림 크기와 위계 일치 */
+.sample.is-lead .cap-head .t {
+  font-size: 17px;
+}
+
 /* --- (선택) services 페이지 아코디언: 제목 아래 summary 한 줄 (services.html 채택 시에만) --- */
 /* .head-left(flex, baseline) 안에서 .t 를 .tt 로 감쌌다. .svc-row .t / [open] .t 는 후손 선택자라 그대로 동작 */
 .svc-row .tt {

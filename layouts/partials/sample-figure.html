@@ -1,7 +1,7 @@
 <!-- 산출물 샘플 그림 — dict: svc(services 항목) · compact(true 면 번호·서비스명 생략, services 아코디언용). 캡션 "샘플 · 합성 데이터" 는 고정 -->
 {{ $s := .svc }}
 {{ with $s.sample }}
-<figure class="sample{{ if $.compact }} is-compact{{ end }}">
+<figure class="sample{{ if $.compact }} is-compact{{ end }}{{ if $.lead }} is-lead{{ end }}">
   <div class="sample-frame">
     <a href="{{ .src }}" target="_blank" rel="noopener"><img src="{{ .src }}" width="960" height="640" alt="{{ .alt }}" loading="lazy" decoding="async"><span class="sr-only"> (원본 크기로 보기, 새 창)</span></a>
   </div>

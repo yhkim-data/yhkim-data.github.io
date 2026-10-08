@@ -79,6 +79,7 @@ services:
       alt: "서비스 만족도 5개 문항의 리커트 응답 분포 누적 막대와 한 문항의 이용 기간별 교차표를 담은 합성 데이터 샘플."
       caption: "설문 응답 분포·교차표"
       featured: true
+      lead: true
 
   - number: "06"
     title: "데이터 구축"
