@@ -52,6 +52,14 @@
     });
   }
 
+  // 앵커(#service-03 등)로 들어오면 해당 아코디언을 펼친다
+  function openHashTarget() {
+    var el = location.hash && document.getElementById(location.hash.slice(1));
+    if (el && el.tagName === 'DETAILS') el.open = true;
+  }
+  openHashTarget();
+  window.addEventListener('hashchange', openHashTarget);
+
   // 리빌 애니메이션 (reduced-motion 시 전체 표시)
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));

@@ -2034,10 +2034,10 @@ div.work-row:hover {
 }
 
 /* services 아코디언: summary 줄이 생긴 뒤에도 +/− 기호를 제목 첫 줄에 맞춤 */
-.svc-row summary {
+.svc-list .svc-row summary {
   align-items: flex-start;
 }
-.svc-row .sign {
+.svc-list .svc-row .sign {
   line-height: calc(clamp(21px, 2.4vw, 30px) * 1.25);
 }
 
@@ -2046,4 +2046,10 @@ div.work-row:hover {
   .sample-grid.is-lead-layout .sample.is-lead {
     order: -1;
   }
+}
+
+/* 앵커 이동 시 고정 헤더에 가리지 않게 (홈 Services 카드 → /services/#service-0N, /contact/#faq) */
+.svc-row,
+#faq {
+  scroll-margin-top: var(--header-height);
 }

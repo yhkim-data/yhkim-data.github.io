@@ -37,7 +37,7 @@
     </div>
     <div class="why-row reveal">
       <div class="why-title"><span class="no" aria-hidden="true">02</span><h3>공공조달 인증,<br>갖추고 있습니다</h3></div>
-      <p>여성기업·중소기업·SW사업자·창업기업 확인 등 공공조달 인증 4종을 보유하고, 나라장터 등록을 완료하여 수의계약과 경쟁입찰에 모두 참여합니다.</p>
+      <p>여성기업·중소기업·SW사업자·창업기업 확인 등 공공조달 인증 {{ .Site.Params.trust.certs_count }}종을 보유하고, 나라장터 등록을 완료하여 수의계약과 경쟁입찰에 모두 참여합니다.</p>
     </div>
     <div class="why-row reveal">
       {{/* R5: 건수 대신 방법론 중심 제목 (건수는 신뢰 스트립에서 이미 노출) */}}
@@ -121,7 +121,7 @@
          소프트웨어 개발은 상한이 없으므로 둘째 문장으로 별도 보충 (고정 문구) */}}
     {{ $min := 0 }}{{ $max := 0 }}
     {{ with .Site.GetPage "/services" }}{{ range .Params.services }}
-      {{ range findRE "[0-9]+" .duration }}{{ $n := int . }}
+      {{ range findRE "[0-9]+" (.duration | default "") }}{{ $n := int . }}
         {{ if or (eq $min 0) (lt $n $min) }}{{ $min = $n }}{{ end }}
         {{ if gt $n $max }}{{ $max = $n }}{{ end }}
       {{ end }}
