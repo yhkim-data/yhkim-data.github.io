@@ -1843,9 +1843,10 @@ body.js .reveal.is-in {
   cursor: zoom-in;
 }
 
-/* 모바일에서 lede 가 있는 섹션 헤더의 번호가 다음 줄로 떨어져 고아가 되는 문제 (홈 Services·Deliverables·FAQ) */
+/* 모바일에서 lede 가 있는 섹션 헤더의 번호가 다음 줄로 떨어져 고아가 되는 문제 (홈 Services·Deliverables·FAQ).
+   제목+lede 를 div 로 감싼 헤더에만 적용해 다른 페이지 헤더에는 영향 없음 */
 @media (max-width: 600px) {
-  .section-head {
+  .section-head:has(> div) {
     flex-wrap: nowrap;
   }
   .section-head > div {

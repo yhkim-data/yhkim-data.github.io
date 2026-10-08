@@ -1,7 +1,7 @@
 <!-- 신뢰 스트립 (홈 hero 바로 아래, 밝은 배경) — 값은 hugo.toml params.stats·params.trust -->
 {{ $t := .Site.Params.trust }}
 <section class="trust" aria-label="핵심 지표">
-  <ul class="trust-strip reveal">
+  <ul class="trust-strip reveal" role="list">
     <li>
       <span class="num">{{ .Site.Params.stats.projects_count }}<span class="plus">+</span></span>
       <span class="cap">분석 프로젝트 수행</span>
