@@ -15,6 +15,7 @@ enableGitInfo = true
 
 [params]
   description = '데이터 분석 · AI/ML 모델링 · 컨설팅 전문 기업'
+  name_en = 'Data Insight Lab'      # 영문 상호 (구조화 데이터 alternateName)
   email = 'yhkim@di-lab.io'
   phone = '010-8630-5881'
   # Web3Forms 폼 전송 키 (공개되어도 무방 — 수신 주소 매핑용)
