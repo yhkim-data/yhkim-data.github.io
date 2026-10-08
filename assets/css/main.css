@@ -2053,3 +2053,11 @@ div.work-row:hover {
 #faq {
   scroll-margin-top: var(--header-height);
 }
+
+/* === 2026-10 마감 정리 === */
+/* 모션 줄이기: 영상은 숨기되(기존 규칙) poster 를 hero 배경으로 — shade 오버레이(z-index 1)는 그대로 위에 깔려 대비 동일 */
+@media (prefers-reduced-motion: reduce) {
+  .hero:has(.hero-video) {
+    background: var(--navy) url("/images/hero-poster.webp") center / cover no-repeat;
+  }
+}
