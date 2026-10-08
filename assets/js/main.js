@@ -7,14 +7,27 @@
   var header = document.querySelector('.site-header');
   var hero = document.querySelector('.hero');
   var isHome = document.body.classList.contains('page-home');
+  // 어두운 섹션(마무리 CTA·푸터) — 헤더가 그 위에 오면 다크 헤더
+  var darkZones = Array.prototype.slice.call(document.querySelectorAll('.creds, .closing-cta, .site-footer'));
 
   // 헤더: 홈은 hero 지나면 솔리드, 서브페이지는 항상 솔리드
+  // 헤더 하단 경계가 어두운 섹션 안에 있으면 is-dark (메뉴 열림 시 해제)
   function updateHeader() {
     if (!header) return;
-    var solid = !isHome ||
-      document.body.classList.contains('menu-open') ||
+    var menuOpen = document.body.classList.contains('menu-open');
+    var solid = !isHome || menuOpen ||
       window.pageYOffset > (hero ? hero.offsetHeight - 90 : 420);
     header.classList.toggle('is-solid', solid);
+
+    var dark = false;
+    if (solid && !menuOpen) {
+      var edge = header.offsetHeight;
+      for (var i = 0; i < darkZones.length; i++) {
+        var r = darkZones[i].getBoundingClientRect();
+        if (r.top <= edge && r.bottom > edge) { dark = true; break; }
+      }
+    }
+    header.classList.toggle('is-dark', dark);
   }
 
   var ticking = false;
