@@ -23,6 +23,12 @@
   <meta name="naver-site-verification" content="{{ . }}">{{ end }}{{ end }}
   {{ partial "schema.html" . }}
   <!-- 폰트: 자체 호스팅 (Pretendard variable dynamic subset + IBM Plex Mono latin) -->
+  {{- if .IsHome }}
+  <!-- hero·헤더 글자가 든 Pretendard 서브셋 선로딩 (폰트 교체로 인한 hero 레이아웃 이동 방지). 홈에서 어차피 받는 파일이라 전송량 증가 없음 -->
+  {{- range slice 82 83 86 87 88 89 90 91 }}
+  <link rel="preload" href="/fonts/pretendard/PretendardVariable.subset.{{ . }}.woff2" as="font" type="font/woff2" crossorigin>
+  {{- end }}
+  {{- end }}
   <link rel="stylesheet" href="/fonts/pretendard.css">
   <link rel="stylesheet" href="/fonts/plexmono.css">
   {{ $style := resources.Get "css/main.css" | minify | fingerprint }}
