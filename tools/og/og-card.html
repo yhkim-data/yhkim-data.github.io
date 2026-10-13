@@ -1,0 +1,57 @@
+<!-- og-card.png 원본 레이아웃 (1200×630) — make_og.mjs 가 캡처. 색·폰트는 사이트 :root 토큰과 동일 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/fonts/pretendard.css">
+<link rel="stylesheet" href="/fonts/plexmono.css">
+<style>
+  :root {
+    --navy: #0C1B33;
+    --accent: #DB3B17;
+    --dark-sub: #C7D0DE;
+    --font-sans: 'Pretendard Variable', 'Pretendard', sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Pretendard Variable', 'Pretendard', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; }
+  body {
+    background: var(--navy);
+    color: #fff;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+    padding: 84px 96px 76px;
+    display: flex;
+    flex-direction: column;
+  }
+  .rule { width: 56px; height: 4px; background: var(--accent); }
+  .logo { margin-top: 26px; font-size: 30px; font-weight: 800; letter-spacing: -0.02em; }
+  h1 {
+    margin-top: auto;
+    font-size: 80px;
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+  }
+  .foot {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--font-mono);
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--dark-sub);
+  }
+  .foot .url { color: #fff; letter-spacing: 0.02em; }
+</style>
+</head>
+<body>
+  <div class="rule"></div>
+  <div class="logo">Data Insight Lab</div>
+  <h1>데이터에서 의사결정까지,<br>인사이트를 설계합니다</h1>
+  <div class="foot"><span>통계 분석 · AI 모델링 · 데이터 구축</span><span class="url">di-lab.io</span></div>
+</body>
+</html>
